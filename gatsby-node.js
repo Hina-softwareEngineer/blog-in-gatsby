@@ -11,3 +11,13 @@ exports.createPages = async function ({ actions }) {
         });
         console.log("End of Gatsby Node File");
 }
+
+exports.onCreatePage = async ({ page, actions }) => { 
+    const { createPage } = actions;
+    
+    if (path.path.match(/^\/app/)) { 
+        page.matchPath = '/app/'
+        
+        createPage(page)
+    }
+}
