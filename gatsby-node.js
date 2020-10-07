@@ -6,6 +6,15 @@ exports.createPages = async function ({ graphql, actions }) {
             nodes {
               title
               slug
+              publishedDate(formatString: "YYYY MMM, DD")
+              featuredImage {
+                fluid {
+                    src
+                }
+              }
+              body {
+                json
+                }
             }
           }
       }
