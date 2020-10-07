@@ -1,13 +1,15 @@
 exports.createPages = async function ({ graphql, actions }) { 
     const { createPage } = actions;
     const response = await graphql(`
-    query{
+    query {
         allContentfulBlogModel {
             nodes {
               title
+              slug
             }
           }
-    }
+      }
+   
     `);
 
     createPage({
@@ -22,10 +24,11 @@ exports.createPages = async function ({ graphql, actions }) {
 
     response.data.allContentfulBlogModel.nodes.forEach(edge => { 
         createPage({
-            path: `/blog/${edge.title}`,
+            path: `/blog/${edge.slug}`,
             component: require.resolve("./src/components/blogs.tsx"),
             context: {
-                title : edge.title
+                title: edge.title,
+                slug : edge.slug
             }
         })
     });
