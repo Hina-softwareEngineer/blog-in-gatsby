@@ -42,6 +42,7 @@ export default function Home() {
         {
           data.allContentfulBlogModel.nodes.map((blog, index) => <div>
             <h1>{blog.title}</h1>
+            <Link to={`/blog/${blog.slug}`}>Go to page</Link>
             <p>{blog.slug}</p>
 
             <p>{blog.publishedDate}</p>
@@ -49,7 +50,7 @@ export default function Home() {
             <img src={blog.featuredImage.fluid.src} alt="alter girl" />
 
 
-            <p>{blog.body.json.content[0].content[0].value.substr(0,50)}</p>
+            <p>{blog.body.json.content[0].content[0].value.substr(0,500)}</p>
 
           </div>)
         }
