@@ -20,13 +20,13 @@ exports.createPages = async function ({ graphql, actions }) {
     }
   `);
 
-  createPage({
-    path: `/blog`,
-    component: require.resolve("./src/components/blogs.tsx"),
-    context: {
-      title: response,
-    },
-  });
+  // createPage({
+  //   path: `/blog`,
+  //   component: require.resolve("./src/components/blogs.tsx"),
+  //   context: {
+  //     title: response,
+  //   },
+  // });
 
   console.log(response, "res");
 

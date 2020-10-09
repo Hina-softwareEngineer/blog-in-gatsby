@@ -1,12 +1,6 @@
 import React from "react";
-import { Link, navigate } from "gatsby";
-import { Router} from '@reach/router';
-import Header from "../components/header";
-import { blogs } from '../../blogs';
-import Blog from '../components/blogs';
+import { Link } from "gatsby";
 import { useStaticQuery, graphql } from "gatsby";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
-
 
 export default function Home() {
   const data = useStaticQuery(
@@ -36,14 +30,14 @@ export default function Home() {
   return (
     <div>
       
-      <h1>Hi my name is hina</h1>
+      <h1>Hi my name is hina.</h1>
        
       <div>
         {
           data.allContentfulBlogModel.nodes.map((blog, index) => <div>
-            <h1>{blog.title}</h1>
-            <Link to={`/blog/${blog.slug}`}>Go to page</Link>
-            <p>{blog.slug}</p>
+            <h1>
+              <Link to={`/blog/${blog.slug}`}>{blog.title}</Link>
+              </h1>
 
             <p>{blog.publishedDate}</p>
 
