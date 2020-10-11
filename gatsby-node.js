@@ -15,6 +15,9 @@ exports.createPages = async function ({ graphql, actions }) {
           body {
             json
           }
+          excerpt {
+            excerpt
+          }
         }
       }
     }
@@ -40,6 +43,7 @@ exports.createPages = async function ({ graphql, actions }) {
         publishedDate: edge.publishedDate,
         featuredImage: edge.featuredImage.fluid.src,
         body: edge.body.json,
+        excerpt: edge,
       },
     });
   });

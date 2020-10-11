@@ -1,0 +1,18 @@
+.image-Container{
+    position: relative;
+}
+
+.image-Container::after{
+    content: '';
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 600px;
+    background-color: rgba(0,0,0,0.4);
+}
+
+/* .MuiAppBar-colorPrimary{
+    background-color:transparent !important;
+    color: unset !important;
+} */
