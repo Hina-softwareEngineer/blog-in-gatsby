@@ -94,9 +94,11 @@ export default function Blogs(props) {
                                 {blog.excerpt.excerpt}
                         </Typography>
                             <CardActions>
-                                <Button size="small" color="primary">
-                                    Read More
-                        </Button>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                
+                        
+                                    <Link href={`/blog/${blog.slug}`} onClick={e => e.preventDefault()}>Read More</Link>
+                                    </Typography>
                             </CardActions>
                         </CardContent>
 

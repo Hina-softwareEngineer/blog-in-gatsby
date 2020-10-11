@@ -16,3 +16,11 @@
     background-color:transparent !important;
     color: unset !important;
 } */
+
+.about-me{
+    position: absolute;
+    top:35%;
+    left: 35%;
+    background-color: #fff;
+    z-index: 10;
+}
