@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import ModalSignIn from '../components/modal';
 import "./header.css";
 
 import { AuthContext } from '../context/auth/auth';
@@ -34,15 +35,33 @@ const useStyles = makeStyles((theme) => ({
 export default function Header() {
   const classes = useStyles();
   const authentication = useContext(AuthContext);
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const Signup = () => { 
     let a = authentication.signUpwithGoogle();
     console.log("a : ", a);
   }
 
+  const getUser = () => { 
+    console.log(authentication.getSignedInUser());
+  }
+
+  const signOut = () => {
+    authentication.signOut();
+}
+
   console.log(authentication, "authentication");
   return (
     <div>
+      <ModalSignIn open={open} handleClose={handleClose} />
       <AppBar className="header" position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
@@ -60,7 +79,9 @@ export default function Header() {
           <Typography variant="h6" color="textSecondary" component="p">
                 About
         </Typography>
-          <Button color="secondary" onClick={Signup}>Login</Button>
+          <Button color="secondary" onClick={handleOpen}>Login</Button>
+          <Button color="secondary" onClick={getUser}>check</Button>
+          <Button color="secondary" onClick={signOut}>Sign Out</Button>
         </Toolbar>
       </AppBar>
       <div className={`${classes.imageContainer} image-Container`}>

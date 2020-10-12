@@ -1,11 +1,19 @@
 import React, { createContext, useEffect, useReducer } from "react";
 import firebase from "firebase";
 import firebaseConfig from "../../firebase/firebaseConfig";
+import { authReducer } from "./authReducer";
 
 export const AuthContext = createContext(null);
 
+let initialState = {
+  user: null,
+  isAuthenticated: false,
+  isLoading: false,
+  error: null,
+};
+
 export const GlobalAuthProvider = (props) => {
-  //   let [state, dispatch] = useReducer();
+  let [state, dispatch] = useReducer(authReducer, initialState);
 
   const signUpwithGoogle = () => {
     var provider = new firebase.auth.GoogleAuthProvider();
@@ -33,8 +41,38 @@ export const GlobalAuthProvider = (props) => {
       });
   };
 
+  const getSignedInUser = () => {
+    firebase.auth().onAuthStateChanged(function (user) {
+      console.log("on auth changed", user);
+      if (user) {
+        // User is signed in.
+        var displayName = user.displayName;
+        var email = user.email;
+        var emailVerified = user.emailVerified;
+        var photoURL = user.photoURL;
+        var isAnonymous = user.isAnonymous;
+        var uid = user.uid;
+        var providerData = user.providerData;
+        // ...
+      } else {
+        // User is signed out.
+        // ...
+      }
+    });
+  };
+
+  const signOut = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then((res) => console.log("Log out succesfully", res))
+      .catch((e) => console.log("Logout failed", e));
+  };
+
   return (
-    <AuthContext.Provider value={{ signUpwithGoogle }}>
+    <AuthContext.Provider
+      value={{ signUpwithGoogle, getSignedInUser, signOut }}
+    >
       {props.children}
     </AuthContext.Provider>
   );
