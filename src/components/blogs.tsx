@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext} from '../context/auth/auth';
 import { navigate } from "gatsby";
 import './blogs.css';
+import { PrivateRoute} from '../context/ProtectedRoute/route';
 
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
-export default function Blog(props) {
+function Blog(props) {
+  
+  let states = useContext(AuthContext);
+  console.log("state : ", states);
+
   const options = {
     renderNode: {
       "embedded-asset-block": node => {
@@ -14,8 +20,9 @@ export default function Blog(props) {
       },
     },
   }
-  console.log(props, " blogs");
+  
   let blog = props.pageContext;
+  console.log("props : ",props)
     return (
       <div className="main-blog">
 
@@ -33,3 +40,4 @@ export default function Blog(props) {
     );
   }
   
+export default PrivateRoute(Blog);

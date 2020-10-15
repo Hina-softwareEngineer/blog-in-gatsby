@@ -34,18 +34,23 @@ exports.createPages = async function ({ graphql, actions }) {
   console.log(response, "res");
 
   response.data.allContentfulBlogModel.nodes.forEach((edge) => {
-    createPage({
-      path: `/blog/${edge.slug}`,
-      component: require.resolve("./src/components/blogs.tsx"),
-      context: {
-        title: edge.title,
-        slug: edge.slug,
-        publishedDate: edge.publishedDate,
-        featuredImage: edge.featuredImage.fluid.src,
-        body: edge.body.json,
-        excerpt: edge,
-      },
-    });
+    if (page.path.match(/^\/app/)) {
+      // page.matchPath is a special key that's used for matching pages
+      // with corresponding routes only on the client.
+      page.matchPath = "/app/*";
+      createPage({
+        path: `/blog/${edge.slug}`,
+        component: require.resolve("./src/components/blogs.tsx"),
+        context: {
+          title: edge.title,
+          slug: edge.slug,
+          publishedDate: edge.publishedDate,
+          featuredImage: edge.featuredImage.fluid.src,
+          body: edge.body.json,
+          excerpt: edge,
+        },
+      });
+    }
   });
 
   // actions.createPage({

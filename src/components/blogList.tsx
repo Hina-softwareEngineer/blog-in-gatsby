@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import { navigate } from "gatsby";
 import "./blogList.css"
 
@@ -66,7 +66,7 @@ export default function Blogs(props) {
         `
       );
     
-    console.log("data ; ", data);
+    console.log("data ; ", data,authentication);
     
      return (
          <div className="blog-list">
