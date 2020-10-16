@@ -34,24 +34,30 @@ exports.createPages = async function ({ graphql, actions }) {
   console.log(response, "res");
 
   response.data.allContentfulBlogModel.nodes.forEach((edge) => {
-    if (page.path.match(/^\/app/)) {
-      // page.matchPath is a special key that's used for matching pages
-      // with corresponding routes only on the client.
-      page.matchPath = "/app/*";
-      createPage({
-        path: `/blog/${edge.slug}`,
-        component: require.resolve("./src/components/blogs.tsx"),
-        context: {
-          title: edge.title,
-          slug: edge.slug,
-          publishedDate: edge.publishedDate,
-          featuredImage: edge.featuredImage.fluid.src,
-          body: edge.body.json,
-          excerpt: edge,
-        },
-      });
-    }
+    // page.matchPath is a special key that's used for matching pages
+    // with corresponding routes only on the client.
+
+    createPage({
+      path: `/blog/${edge.slug}`,
+      component: require.resolve("./src/components/blogs.tsx"),
+      context: {
+        title: edge.title,
+        slug: edge.slug,
+        publishedDate: edge.publishedDate,
+        featuredImage: edge.featuredImage.fluid.src,
+        body: edge.body.json,
+        excerpt: edge,
+      },
+    });
   });
+
+  // page.matchPath is a special key that's used for matching pages
+  // only on the client.
+  // if (page.path.match(/^\/app/)) {
+  //   page.matchPath = "/app/*";
+  //   // Update the page.
+  //   createPage(page);
+  // }
 
   // actions.createPage({
 
@@ -66,12 +72,12 @@ exports.createPages = async function ({ graphql, actions }) {
   //     console.log("End of Gatsby Node File");
 };
 
-// exports.onCreatePage = async ({ page, actions }) => {
-//     const { createPage } = actions;
+exports.onCreatePage = async ({ page, actions }) => {
+  const { createPage } = actions;
 
-//     if (path.path.match(/^\/app/)) {
-//         page.matchPath = '/app/'
+  if (page.path.match(/^\/app/)) {
+    page.matchPath = "/app/*";
 
-//         createPage(page)
-//     }
-// }
+    createPage(page);
+  }
+};

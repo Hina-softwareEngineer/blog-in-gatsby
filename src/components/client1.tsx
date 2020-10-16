@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default () => {
+export default  () => {
     return (
         <div>
             This is client page 1

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext} from '../context/auth/auth';
 import { navigate } from "gatsby";
 import './blogs.css';
-import { PrivateRoute} from '../context/ProtectedRoute/route';
+import { PrivateRoute} from './PrivateRoute';
 
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
@@ -40,4 +40,4 @@ function Blog(props) {
     );
   }
   
-export default PrivateRoute(Blog);
+export default Blog;
