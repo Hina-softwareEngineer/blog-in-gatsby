@@ -1,3 +1,6 @@
+// import { useContext } from "react";
+// import { AuthContext } from "./src/context/auth/auth";
+
 exports.createPages = async function ({ graphql, actions }) {
   const { createPage } = actions;
   const response = await graphql(`
@@ -75,8 +78,8 @@ exports.createPages = async function ({ graphql, actions }) {
 exports.onCreatePage = async ({ page, actions }) => {
   const { createPage } = actions;
 
-  if (page.path.match(/^\/app/)) {
-    page.matchPath = "/app/*";
+  if (page.path.match(/^\/blog/)) {
+    page.matchPath = "/blog/*";
 
     createPage(page);
   }

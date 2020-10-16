@@ -10,15 +10,8 @@ export default function Home() {
  
   return (
     <GlobalAuthProvider>
-      {/* <div>
-     
-        <Header />
-
-        <Blogs />
-
-      </div> */}
       <Layout>
-        <h1>hello wrold </h1>
+        <Blogs />
       </Layout>
       </GlobalAuthProvider>
   );
