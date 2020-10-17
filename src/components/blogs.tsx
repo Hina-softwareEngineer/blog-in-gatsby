@@ -37,10 +37,23 @@ export default Blog;
 export const BlogData = ({ blog, options, ...props }) => {
    let states = useContext(AuthContext);
   console.log("state : ", states);
+
+  if (states) { 
+    
+    console.log('states', states.getSignedInUser());
+    if (states.getSignedInUser() === null) {
+      
+    }
+    else { 
+      
+    }
+
+  }
   return (
     <div className="main-blog">
-
-      <button onClick={() => navigate("/")}>Go back</button>
+      {
+        states ? (states.getSignedInUser() ? <>
+        <button onClick={() => navigate("/")}>Go back</button>
       <h1>{blog.title}</h1>
 
       <p>{blog.publishedDate}</p>
@@ -49,7 +62,8 @@ export const BlogData = ({ blog, options, ...props }) => {
 
 
       <p>{documentToReactComponents(blog.body, options)}</p>
-        
+          </> : <div> Error</div>) : <div>Loading...</div>
+      }
     </div>
   );
 }

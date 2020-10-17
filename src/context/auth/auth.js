@@ -53,11 +53,15 @@ export const GlobalAuthProvider = (props) => {
         var isAnonymous = user.isAnonymous;
         var uid = user.uid;
         var providerData = user.providerData;
+        console.log(email, user);
         // ...
       } else {
         // User is signed out.
         // ...
+        console.log("sign out");
       }
+
+      return user;
     });
   };
 
