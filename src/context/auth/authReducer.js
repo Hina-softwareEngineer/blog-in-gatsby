@@ -1,5 +1,11 @@
 export const authReducer = (state, action) => {
   switch (action.type) {
+    case "LOADED":
+      return {
+        ...state,
+        isLoading: true,
+        isAuthenticated: false,
+      };
     case "LOADING":
       return {
         ...state,

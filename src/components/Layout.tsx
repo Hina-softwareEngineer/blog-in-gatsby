@@ -5,10 +5,11 @@ type LayoutProps = {
   children: ReactNode;
 };
 
-export default function Layout({ children }: LayoutProps) {
+export default function Layout({ children , handleOpen }) {
+  console.log("layout handleOpen",handleOpen)
   return (
     <div>
-      <Header title="Header of a Page" />
+      <Header handleOpen={handleOpen} title="Header of a Page" />
       {children}
     </div>
   );

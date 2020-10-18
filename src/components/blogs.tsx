@@ -53,7 +53,7 @@ export const BlogData = ({ blog, options, ...props }) => {
 
 
           <p>{documentToReactComponents(blog.body, options)}</p>
-        </> : <div>Error</div>
+        </> : (!state.isAuthenticated && !state.isLoading ? <div>Loading...</div> : <div>Error...</div>)
       }
       </div>
   );

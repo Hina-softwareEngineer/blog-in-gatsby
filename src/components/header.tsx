@@ -1,4 +1,4 @@
-import React, { useContext} from "react";
+import React, { useState,useContext} from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -32,56 +32,33 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function Header() {
+export default function Header({ handleOpen}) {
   const classes = useStyles();
-  const authentication = useContext(AuthContext);
-  const [open, setOpen] = React.useState(false);
+  const { state, signOut } = useContext(AuthContext);
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const Signup = () => { 
-    let a = authentication.signUpwithGoogle();
-    console.log("a : ", a);
+  const Signout = () => {
+    signOut();
   }
 
-  const getUser = () => { 
-    console.log(authentication.getSignedInUser());
-  }
-
-  const signOut = () => {
-    authentication.signOut();
-}
-
-  console.log(authentication, "authentication");
   return (
     <div>
-      <ModalSignIn open={open} handleClose={handleClose} />
       <AppBar className="header" position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             HINA KHADIM
           </Typography>
-          {/* <div>
-          <Typography variant="h6" className={classes.title}>
-            Blog
-          </Typography>
-          </div> */}
+
           
         <Typography variant="h6" color="textSecondary" component="p">
             Blog
         </Typography>
           <Typography variant="h6" color="textSecondary" component="p">
-                About
+            About
         </Typography>
-          <Button color="secondary" onClick={handleOpen}>Login</Button>
-          <Button color="secondary" onClick={getUser}>check</Button>
-          <Button color="secondary" onClick={signOut}>Sign Out</Button>
+          {
+            state.isAuthenticated && !state.isLoading ? <Button color="secondary" onClick={Signout}>Sign Out</Button> : <Button color="secondary" onClick={handleOpen}>Login</Button>
+          }
+          
         </Toolbar>
       </AppBar>
       <div className={`${classes.imageContainer} image-Container`}>

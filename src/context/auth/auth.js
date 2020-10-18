@@ -69,6 +69,9 @@ export const GlobalAuthProvider = (props) => {
       } else {
         // ...
         console.log("sign out");
+        dispatch({
+          type: "LOADED",
+        });
       }
     });
     console.log("userreturn", userReturn);

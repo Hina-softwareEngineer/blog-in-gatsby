@@ -27,13 +27,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ModalSignIn({ open, handleClose}) { 
   const classes = useStyles();
-  const { signUpwithGoogle } = useContext(AuthContext);
+  const { signUpwithGoogle, state } = useContext(AuthContext);
   
-  const Signup = () => { 
-    let a = signUpwithGoogle();
-    console.log("a : ", a);
+  const Signup = async () => { 
+    signUpwithGoogle();
+    setTimeout(() => { handleClose();}, 5000);
   }
-
 
     return (
         <Modal

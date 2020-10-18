@@ -39,7 +39,7 @@ const useStyles = makeStyles({
 
 export default function Blogs(props) {
     const classes = useStyles();
-    const authentication = useContext(AuthContext);
+    const { state}= useContext(AuthContext);
     const data = useStaticQuery(
         graphql`
           query {
@@ -64,9 +64,19 @@ export default function Blogs(props) {
             }
           }
         `
-      );
+    );
     
-    console.log("data ; ", data,authentication);
+
+    const onLink = (link) => { 
+        if (state.isAuthenicated && !isLoading) {
+            navigate(link);
+        }
+        else { 
+            
+        }
+    }
+    
+    console.log("data ; ", state);
     
      return (
          <div className="blog-list">
@@ -88,19 +98,15 @@ export default function Blogs(props) {
                         <Typography variant="body2" color="textSecondary" component="p">
                                 {blog.publishedDate}
                         </Typography>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                <Link href={`/blog/${blog.slug}`} onClick={e=>e.preventDefault()}>
+                            <Typography onClick={() => onLink("/blog/"+blog.slug)} gutterBottom variant="h5" component="h2">
                             {blog.title}
-  </Link>
                         </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
                                 {blog.excerpt.excerpt}
                         </Typography>
                             <CardActions>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                
-                        
-                                    <Link href={`/blog/${blog.slug}`} onClick={e => e.preventDefault()}>Read More</Link>
+                                <Typography variant="body2" onClick={() => onLink("/blog/"+blog.slug)} color="textSecondary" component="p">
+                                    Read More
                                     </Typography>
                             </CardActions>
                         </CardContent>
