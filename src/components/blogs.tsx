@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext,useState } from 'react';
 import { AuthContext} from '../context/auth/auth';
 import { navigate } from "gatsby";
 import './blogs.css';
@@ -23,7 +23,6 @@ function Blog(props) {
   }
   
   let blog = props.pageContext;
-  console.log("props : ",props,states)
   return (
       <GlobalAuthProvider>
       <BlogData blog={blog} options={options} />
@@ -35,35 +34,27 @@ export default Blog;
 
 
 export const BlogData = ({ blog, options, ...props }) => {
-   let states = useContext(AuthContext);
-  console.log("state : ", states);
+  let { state} = useContext(AuthContext);
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
+  console.log('is auth', isAuthenticated);
 
-  if (states) { 
-    
-    console.log('states', states.getSignedInUser());
-    if (states.getSignedInUser() === null) {
-      
-    }
-    else { 
-      
-    }
+  console.log("state : ", state);
 
-  }
   return (
     <div className="main-blog">
       {
-        states ? (states.getSignedInUser() ? <>
-        <button onClick={() => navigate("/")}>Go back</button>
-      <h1>{blog.title}</h1>
+        state.isAuthenticated && !state.isLoading ? <>
+          <button onClick={() => navigate("/")}>Go back</button>
+          <h1>{blog.title}</h1>
 
-      <p>{blog.publishedDate}</p>
+          <p>{blog.publishedDate}</p>
 
-      <img src={blog.featuredImage} alt="alter girl" />
+          <img src={blog.featuredImage} alt="alter girl" />
 
 
-      <p>{documentToReactComponents(blog.body, options)}</p>
-          </> : <div> Error</div>) : <div>Loading...</div>
+          <p>{documentToReactComponents(blog.body, options)}</p>
+        </> : <div>Error</div>
       }
-    </div>
+      </div>
   );
 }

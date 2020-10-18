@@ -7,7 +7,7 @@ export const authReducer = (state, action) => {
 
         ...state,
         ...action.payload,
-        isLoading: true,
+        isLoading: false,
         isAuthenticated: true,
         user: action.payload,
         error: null,
@@ -18,10 +18,10 @@ export const authReducer = (state, action) => {
         ...state,
         isLoading: false,
         isAuthenticated: true,
-        user: action.payload.user,
+        user: action.payload.email,
         error: null,
       };
-    case "LOGIN FAILED":
+    case "LOGIN_FAILED":
       localStorage.removeItem("token");
       return {
         ...state,

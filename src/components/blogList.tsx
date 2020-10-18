@@ -76,7 +76,7 @@ export default function Blogs(props) {
              <div>
              {
                 data.allContentfulBlogModel.nodes.map((blog, index) =>
-                   <> <Card className={classes.root}>
+                   <React.Fragment key={index}> <Card className={classes.root}>
                         <CardActionArea className={classes.imageButton}>
                             <CardMedia
                                 className={classes.media}
@@ -108,7 +108,7 @@ export default function Blogs(props) {
 
                     </Card>
                 
-                <Divider/></>)
+                <Divider/></React.Fragment>)
 }       
              </div>
              </div>

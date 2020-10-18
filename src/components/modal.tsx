@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
+import { AuthContext } from '../context/auth/auth';
+
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -24,7 +26,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ModalSignIn({ open, handleClose}) { 
-    const classes = useStyles();
+  const classes = useStyles();
+  const { signUpwithGoogle } = useContext(AuthContext);
+  
+  const Signup = () => { 
+    let a = signUpwithGoogle();
+    console.log("a : ", a);
+  }
+
 
     return (
         <Modal
@@ -42,7 +51,8 @@ export default function ModalSignIn({ open, handleClose}) {
             <Fade in={open}>
                 <div className={classes.paper}>
                     <h2 id="transition-modal-title">Login to Hina Blogs</h2>
-                    <Button
+            <Button
+              onClick={Signup}
         variant="contained"
         color="primary"
         size="large"

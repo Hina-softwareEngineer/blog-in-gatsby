@@ -27,6 +27,13 @@ export const GlobalAuthProvider = (props) => {
         var token = result.credential.accessToken;
         // The signed-in user info.
         var user = result.user;
+        console.log(user, "user");
+
+        dispatch({
+          type: "LOGIN_SUCCESSFULLY",
+          payload: user,
+          accessToken: token,
+        });
         // ...
       })
       .catch(function (error) {
@@ -41,9 +48,9 @@ export const GlobalAuthProvider = (props) => {
       });
   };
 
-  const getSignedInUser = () => {
-    firebase.auth().onAuthStateChanged(function (user) {
-      console.log("on auth changed", user);
+  const getSignedInUser = async () => {
+    let userReturn = undefined;
+    await firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         // User is signed in.
         var displayName = user.displayName;
@@ -53,30 +60,41 @@ export const GlobalAuthProvider = (props) => {
         var isAnonymous = user.isAnonymous;
         var uid = user.uid;
         var providerData = user.providerData;
-        console.log(email, user);
+        userReturn = user;
+        dispatch({
+          type: "LOADING",
+          payload: { name: displayName, email: email },
+        });
         // ...
       } else {
-        // User is signed out.
         // ...
         console.log("sign out");
       }
-
-      return user;
     });
+    console.log("userreturn", userReturn);
+
+    // return userReturn;
   };
 
   const signOut = () => {
     firebase
       .auth()
       .signOut()
-      .then((res) => console.log("Log out succesfully", res))
+      .then((res) => {
+        console.log("Log out succesfully", res);
+        dispatch({
+          type: "SIGN_OUT",
+        });
+      })
       .catch((e) => console.log("Logout failed", e));
   };
 
+  useEffect(() => {
+    getSignedInUser();
+  }, []);
+
   return (
-    <AuthContext.Provider
-      value={{ signUpwithGoogle, getSignedInUser, signOut }}
-    >
+    <AuthContext.Provider value={{ state, signUpwithGoogle, signOut }}>
       {props.children}
     </AuthContext.Provider>
   );
