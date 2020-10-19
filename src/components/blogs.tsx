@@ -3,7 +3,6 @@ import { AuthContext} from '../context/auth/auth';
 import { navigate } from "gatsby";
 import './blogs.css';
 import { GlobalAuthProvider } from '../context/auth/auth';
-import { PrivateRoute } from './PrivateRoute';
 import Button from '@material-ui/core/Button';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { MARKS} from '@contentful/rich-text-types'
@@ -17,7 +16,7 @@ function Blog(props) {
 
   const options = {
     renderMark: {
-      [MARKS.CODE]: code => <pre><code className='language-javascript'>{code}</code></pre>
+      [MARKS.CODE]: code => <code className='language-javascript'>{code}</code>
     },
     renderNode: {
       "embedded-asset-block": node => {
@@ -43,7 +42,7 @@ export const BlogData = ({ blog, options, ...props }) => {
   let { state } = useContext(AuthContext);
   
    useEffect(() => {
-    Prism.highlightAll();
+      Prism.highlightAll();
   }, [])
  
 
