@@ -31,13 +31,17 @@ const useStyles = makeStyles({
     imageButton: {
         width: '300px',
         margin: "0 30px"
+    },
+    readMore: {
+        color: 'red',
+        cursor: "pointer",
     }
 });
   
 // karla font family
 // crimson text font family heading
 
-export default function Blogs(props) {
+export default function Blogs({ handleOpen }) {
     const classes = useStyles();
     const { state}= useContext(AuthContext);
     const data = useStaticQuery(
@@ -68,15 +72,13 @@ export default function Blogs(props) {
     
 
     const onLink = (link) => { 
-        if (state.isAuthenicated && !isLoading) {
+        if (state.isAuthenticated && !state.isLoading) {
             navigate(link);
         }
         else { 
-            
+            handleOpen();
         }
     }
-    
-    console.log("data ; ", state);
     
      return (
          <div className="blog-list">
@@ -105,7 +107,7 @@ export default function Blogs(props) {
                                 {blog.excerpt.excerpt}
                         </Typography>
                             <CardActions>
-                                <Typography variant="body2" onClick={() => onLink("/blog/"+blog.slug)} color="textSecondary" component="p">
+                                <Typography className={classes.readMore} variant="body2" onClick={() => onLink("/blog/"+blog.slug)} color="textSecondary" component="p">
                                     Read More
                                     </Typography>
                             </CardActions>

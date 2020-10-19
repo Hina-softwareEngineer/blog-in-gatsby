@@ -4,7 +4,6 @@ import { AuthContext } from "../context/auth/auth";
 
 function PrivateRoute({ component: Component, location, ...rest }) {
   const authentication = useContext(AuthContext);
-  console.log(authentication, "protected routes");
   // let auth = useContext(AuthContext);
 
   // console.log(auth, "protected");

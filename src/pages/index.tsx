@@ -21,7 +21,7 @@ export default function Home() {
     <GlobalAuthProvider>
       <ModalSignIn open={open} handleClose={handleClose} />
       <Layout handleOpen={handleOpen} >
-        <Blogs />
+        <Blogs handleOpen={handleOpen} />
       </Layout>
       </GlobalAuthProvider>
   );

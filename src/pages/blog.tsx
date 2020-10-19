@@ -20,7 +20,6 @@ const data = useStaticQuery(
           }
         `
       );
-    console.log("props blogs : ", props,data);
   return (
     <GlobalAuthProvider>
       <Layout>

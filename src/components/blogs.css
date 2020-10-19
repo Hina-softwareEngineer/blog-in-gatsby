@@ -7,5 +7,35 @@
 
 .main-blog > h1{
     font-family: 'Crimson Text', serif;
-    font-size: 
+    font-size: 44px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.main-blog > .date{
+    font-size: 14px;
+    color: #aaa;
+    letter-spacing: 1px;
+}
+
+.main-blog >div> p{
+    font-family: 'Karla', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.post-content > p:first-child::first-letter{
+    font-size: 60px;
+    font-weight: 500;
+    float: left;
+    margin-right: 15px;
+    position: relative;
+    text-transform: uppercase;
+    vertical-align: bottom;
+    color: #000;
+    line-height: 0.8;
+}
+
+pre{
+    background:#000;
 }

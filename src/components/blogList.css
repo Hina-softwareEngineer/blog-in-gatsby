@@ -19,10 +19,11 @@
     margin-bottom: 100px;
 }
 
-h2 > a{
-    font-size: 2rem;
-    font-weight: 400;
+h2{
+    font-size: 2rem !important;
+    font-weight: 400 !important;
     color: #000000;
     text-decoration: none;
-    font-family: 'Crimson Text', serif;
+    font-family: 'Crimson Text', serif !important;
+    cursor : pointer;
 }
