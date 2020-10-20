@@ -11,10 +11,10 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
+
 
 import { AuthContext } from '../context/auth/auth';
 
@@ -23,25 +23,41 @@ const useStyles = makeStyles({
         display: "flex",
         margin: "20px 0",
         boxShadow: "none",
+        alignItems:'center',
     },
     media: {
         width: "300px",
-        height:"200px"
+        height: "200px",
     },
     imageButton: {
         width: '300px',
+        height:"200px",
         margin: "0 30px"
     },
     readMore: {
-        color: 'red',
+        color: '#3f51b5',
         cursor: "pointer",
+        fontWeight: 'bold',
+        fontFamily: "'Karla', serif",
+    },
+    date: {
+        letterSpacing: '1.3px',
+        fontFamily: "'Karla', sans-serif"
+    },
+    excerpt: {
+        fontSize: "15px",
+        fontFamily: "'Karla', sans-serif"
+    },
+    footer: {
+        margin: '10px 0',
+        padding: 0,
     }
 });
   
 // karla font family
 // crimson text font family heading
 
-export default function Blogs({ handleOpen }) {
+export default function Blogs({ handleOpen,blogs }) {
     const classes = useStyles();
     const { state}= useContext(AuthContext);
     const data = useStaticQuery(
@@ -83,7 +99,7 @@ export default function Blogs({ handleOpen }) {
      return (
          <div className="blog-list">
 
-             <h1>Latest Blogs</h1>
+             <h1 ref={blogs}>Latest Blogs</h1>
              <div className="divider"></div>
              <div>
              {
@@ -97,16 +113,16 @@ export default function Blogs({ handleOpen }) {
                             />
                         </CardActionArea>
                         <CardContent>
-                        <Typography variant="body2" color="textSecondary" component="p">
+                        <Typography className={classes.date} variant="body2" color="textSecondary" component="p">
                                 {blog.publishedDate}
                         </Typography>
                             <Typography onClick={() => onLink("/blog/"+blog.slug)} gutterBottom variant="h5" component="h2">
                             {blog.title}
                         </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
+                            <Typography className={classes.excerpt} variant="body2" color="textSecondary" component="p">
                                 {blog.excerpt.excerpt}
                         </Typography>
-                            <CardActions>
+                            <CardActions className={classes.footer}>
                                 <Typography className={classes.readMore} variant="body2" onClick={() => onLink("/blog/"+blog.slug)} color="textSecondary" component="p">
                                     Read More
                                     </Typography>

@@ -8,6 +8,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { MARKS} from '@contentful/rich-text-types'
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import Prism from "prismjs";
+import { Footer} from './footer';
 import "../style/prism.css";
 
 function Blog(props) {
@@ -16,7 +17,7 @@ function Blog(props) {
 
   const options = {
     renderMark: {
-      [MARKS.CODE]: code => <code className='language-javascript'>{code}</code>
+      [MARKS.CODE]: code => <pre><code className='language-javascript'>{code}</code></pre>
     },
     renderNode: {
       "embedded-asset-block": node => {
@@ -47,33 +48,22 @@ export const BlogData = ({ blog, options, ...props }) => {
  
 
   return (
+    <div className='main-container'>
+      <Button variant="contained" color="primary" onClick={() => navigate("/")}><ArrowBackIcon /></Button>
     <div className="main-blog">
       {
         state.isAuthenticated && !state.isLoading ? <>
           
-          <Button color="primary" onClick={() => navigate("/")}><ArrowBackIcon /></Button>
           <h1>{blog.title}</h1>
 
           <p className='date'>{blog.publishedDate}</p>
 
-          <img src={blog.featuredImage} alt="alter girl" />
-          <pre>
-  <code className="language-javascript">
-  {`
-    onSubmit(e) {
-      e.preventDefault();
-      const job = {
-        title: 'Developer',
-        company: 'Facebook' 
-        };
-      }
-  `}
-  </code>
-</pre>
-
-          <div className='post-content'>{documentToReactComponents(blog.body, options)}</div>
+          <img className='feature-image' src={blog.featuredImage} alt="alter girl" />
+            <div className='post-content'>{documentToReactComponents(blog.body, options)}</div>
+            <Footer />
         </> : (!state.isAuthenticated && !state.isLoading ? <div>Loading...</div> : <div>Error...</div>)
       }
+      </div>
       </div>
   );
 }

@@ -1,0 +1,16 @@
+
+.footer > p{
+ font-size: 12px !important;
+    padding: 40px 0;
+    color: #aaa !important;
+    margin:0 !important;
+}
+
+.color{
+    color: #3f51b5;
+    font-weight:  bold;
+}
+
+.center{
+    text-align: center;
+}
