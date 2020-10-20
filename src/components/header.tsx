@@ -58,7 +58,7 @@ export default function Header({ handleOpen,blogs,about}) {
   }
 
   const onClick = (e) => {
-    if (e.target.textContent === 'Blog') {
+    if (e.target.textContent === 'Blogs') {
       blogs.current.scrollIntoView({
         behavior: "smooth", block: "start"
       })
@@ -91,8 +91,12 @@ export default function Header({ handleOpen,blogs,about}) {
       </AppBar>
       <div className={`${classes.imageContainer} image-Container`}>
         <img src="https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80" alt="Blog post" />
-         <Typography ref={about} variant="h6" color="textSecondary" component="p" className="about-me">
-                About
+        <Typography ref={about} variant="h6" color="textSecondary" className="about-me">
+          <h3 className="h3-about">Hi Guys! <div className='hand'>👋</div></h3>
+          <h1 className="about-name">HINA KHADIM here</h1>
+          <h5 className='info-about'>Future Software Engineer!  🥰🥰 | 
+          Love to Code❤️❤️ | Full Stack Developer✨✨ | MERN Developer ☘️☘️|
+           Python Developer⭐️⭐️ | Javascript Developer 🔥 🔥</h5>
         </Typography>
       </div>
     </div>

@@ -18,9 +18,59 @@
 } */
 
 .about-me{
+    text-align: center;
+    padding: 20px;
+    max-width: 600px;
     position: absolute;
-    top:35%;
-    left: 35%;
-    background-color: #fff;
+    top:30%;
+    left: 30%;
     z-index: 10;
+}
+
+.h3-about{
+    margin: 0;
+    color: #fff;
+    text-shadow: 0 2px 4px #000;
+}
+
+.info-about{
+    margin: 0 ;
+    color: #fff;
+    text-shadow: 0 2px 4px #000;
+}
+
+.about-name{
+    margin: 0;
+    text-shadow: 0 2px 4px #000;
+    color: #fff;
+}
+
+.hand{
+    display: inline-block;
+    text-shadow:0 1px 2px #000;    
+    animation: rotate-anim 2s linear 1s infinite forwards;
+}
+
+@keyframes rotate-anim{
+    0%{
+        transform: rotate(0deg);
+    }
+    10%{
+        transform: rotate(-20deg);
+    }
+    20%{
+        transform: rotate(20deg);
+    }
+    30%{
+        transform: rotate(-5deg);
+    }
+    40%{
+        transform: rotate(20deg);
+    }
+    50%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
 }
