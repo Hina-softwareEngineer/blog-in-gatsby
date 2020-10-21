@@ -30,18 +30,22 @@
 .h3-about{
     margin: 0;
     color: #fff;
+    font-family: 'Karla', sans-serif;
     text-shadow: 0 2px 4px #000;
 }
 
 .info-about{
     margin: 0 ;
+    font-size: 18px;
     color: #fff;
+    font-family: 'Karla', sans-serif;
     text-shadow: 0 2px 4px #000;
 }
 
 .about-name{
     margin: 0;
     text-shadow: 0 2px 4px #000;
+    font-family: 'Karla', sans-serif;
     color: #fff;
 }
 

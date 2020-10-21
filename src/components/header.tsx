@@ -95,7 +95,7 @@ export default function Header({ handleOpen,blogs,about}) {
           <h3 className="h3-about">Hi Guys! <div className='hand'>👋</div></h3>
           <h1 className="about-name">HINA KHADIM here</h1>
           <h5 className='info-about'>Future Software Engineer!  🥰🥰 | 
-          Love to Code❤️❤️ | Full Stack Developer✨✨ | MERN Developer ☘️☘️|
+          Love to Code❤️❤️ <br /> Full Stack Developer✨✨ | MERN Developer ☘️☘️|
            Python Developer⭐️⭐️ | Javascript Developer 🔥 🔥</h5>
         </Typography>
       </div>
