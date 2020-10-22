@@ -11,6 +11,7 @@ import ModalSignIn from '../components/modal';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import "./header.css";
+import Avatar from '@material-ui/core/Avatar';
 
 import { AuthContext } from '../context/auth/auth';
 import { auth } from "firebase";
@@ -62,7 +63,11 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: 'center',
     textShadow:"0 2px 4px #000"
-  }
+  },
+  large: {
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+  },
 
 }));
 
@@ -107,20 +112,13 @@ export default function Header({ handleOpen,blogs,about}) {
           <Button onClick={() => {
             navigate("/about")
           }} className={classes.loginBtn} >About</Button>
-
-          
-          {/* <Typography className={classes.options}  variant="h6" color="textSecondary" component="p">
-            Blog
-        </Typography>
-          <Typography className={classes.options} variant="h6" color="textSecondary" component="p">
-            About
-        </Typography> */}
           {
             state.isAuthenticated && !state.isLoading ? <>
               <div className={classes.menu} onClick={handleClick} aria-controls="simple-menu" aria-haspopup="true">
-                <div className={classes.imagesubContainer}>
+                {/* <div className={classes.imagesubContainer}>
                   <img className={classes.image} src={state.user?.photoURL} alt="profile" />
-                  </div>
+                  </div> */}
+                <Avatar src={state.user?.photoURL || "/broken-image.jpg"} className={classes.large} />
                 <h3 className={classes.name}>{state.user?.displayName}</h3>
               </div>
            <Menu

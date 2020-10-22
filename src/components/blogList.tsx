@@ -1,11 +1,12 @@
-import React,{useContext} from 'react';
+import React,{useContext,useState} from 'react';
 import { navigate } from "gatsby";
 import "./blogList.css"
 
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { Link } from "gatsby";
+import Avatar from '@material-ui/core/Avatar';
 import { useStaticQuery, graphql } from "gatsby";
-
+import Pagination from '@material-ui/lab/Pagination';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -13,6 +14,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+
 import Divider from '@material-ui/core/Divider';
 
 
@@ -59,7 +61,12 @@ const useStyles = makeStyles({
 
 export default function Blogs({ handleOpen,blogs }) {
     const classes = useStyles();
-    const { state}= useContext(AuthContext);
+    const { state } = useContext(AuthContext);
+    const [page, setPage] = useState(1);
+      const onPageChange = (event,page) => { 
+          console.log(page);
+          setPage(page);
+  }
     const data = useStaticQuery(
         graphql`
           query {
@@ -85,6 +92,12 @@ export default function Blogs({ handleOpen,blogs }) {
           }
         `
     );
+
+    console.log(data, 'data');
+    let totalPages = Math.ceil(data.allContentfulBlogModel.nodes.length / 5);
+    let LastPostIndex = page * 5;
+    let FirstPostIndex = LastPostIndex - 5;
+    const currentBlogs = data.allContentfulBlogModel.nodes.slice(FirstPostIndex,LastPostIndex);
     
 
     const onLink = (link) => { 
@@ -103,7 +116,7 @@ export default function Blogs({ handleOpen,blogs }) {
              <div className="divider"></div>
              <div>
              {
-                data.allContentfulBlogModel.nodes.map((blog, index) =>
+                currentBlogs.map((blog, index) =>
                    <React.Fragment key={index}> <Card className={classes.root}>
                         <CardActionArea className={classes.imageButton}>
                             <CardMedia
@@ -132,9 +145,12 @@ export default function Blogs({ handleOpen,blogs }) {
 
                     </Card>
                 
-                <Divider/></React.Fragment>)
+                        <Divider />
+                
+                    </React.Fragment>)
 }       
              </div>
+             {totalPages > 0 ? <Pagination count={totalPages} page={page} onChange={onPageChange} color="primary" />: null}
              </div>
 
     );

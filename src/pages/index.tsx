@@ -9,17 +9,23 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ModalSignIn from '../components/modal';
 import Typography from '@material-ui/core/Typography';
+import Pagination from '@material-ui/lab/Pagination';
 
 const useStyles = makeStyles((theme) => ({
   imageContainer: {
     width: "100%",
     height: "600px",
     overflow: "hidden"
-  }
+  },
+  large: {
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+  },
 }));
 
 export default function Home() {
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [page, setPage] = useState(1);
   const classes = useStyles();
   
   let blogs = createRef();
@@ -32,6 +38,8 @@ export default function Home() {
   const handleClose = () => {
     setOpen(false);
   };
+
+
    
   return (
     <GlobalAuthProvider>
@@ -48,6 +56,7 @@ export default function Home() {
         </Typography>
       </div>
         <Blogs blogs={blogs} handleOpen={handleOpen} />
+        {/* <Pagination count={10} page={page} onChange={onPageChange} color="primary" /> */}
       </Layout>
       </GlobalAuthProvider>
   );
