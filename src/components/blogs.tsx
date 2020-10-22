@@ -10,6 +10,7 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import Prism from "prismjs";
 import { Footer} from './footer';
 import "../style/prism.css";
+import Header from '../components/header';
 
 function Blog(props) {
   
@@ -48,6 +49,8 @@ export const BlogData = ({ blog, options, ...props }) => {
  
 
   return (
+    <>
+    <Header />
     <div className='main-container'>
       <Button variant="contained" color="primary" onClick={() => navigate("/")}><ArrowBackIcon /></Button>
     <div className="main-blog">
@@ -65,5 +68,6 @@ export const BlogData = ({ blog, options, ...props }) => {
       }
       </div>
       </div>
+      </>
   );
 }

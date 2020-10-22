@@ -28,11 +28,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     fontFamily: "'Karla', serif",
   },
-  imageContainer: {
-    width: "100%",
-    height: "600px",
-    overflow: "hidden"
-  },
   options: {
     fontFamily: "'Karla', serif",
     color: '#fff',
@@ -76,7 +71,6 @@ export default function Header({ handleOpen,blogs,about}) {
 
   const { state, signOut } = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  console.log(state.user,'user');
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -88,6 +82,9 @@ export default function Header({ handleOpen,blogs,about}) {
 
   const Signout = () => {
     signOut();
+    if (window.location.pathname != '/') { 
+      navigate("/");
+    }
   }
 
   const onClick = (e) => {
@@ -107,7 +104,9 @@ export default function Header({ handleOpen,blogs,about}) {
           </Typography>
 
           <Button onClick={onClick}  className={classes.loginBtn} >Blogs</Button>
-          <Button onClick={()=> navigate("/about")} className={classes.loginBtn} >About</Button>
+          <Button onClick={() => {
+            navigate("/about")
+          }} className={classes.loginBtn} >About</Button>
 
           
           {/* <Typography className={classes.options}  variant="h6" color="textSecondary" component="p">
@@ -140,16 +139,6 @@ style={{top:'6%'}}
           }
         </Toolbar>
       </AppBar>
-      <div className={`${classes.imageContainer} image-Container`}>
-        <img src="https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80" alt="Blog post" />
-        <Typography ref={about} variant="h6" color="textSecondary" className="about-me">
-          <h3 className="h3-about">Hi Guys! <div className='hand'>👋</div></h3>
-          <h1 className="about-name">HINA KHADIM here</h1>
-          <h5 className='info-about'>Future Software Engineer!  🥰🥰 | 
-          Love to Code❤️❤️ <br /> Full Stack Developer✨✨ | MERN Developer ☘️☘️|
-           Python Developer⭐️⭐️ | Javascript Developer 🔥 🔥</h5>
-        </Typography>
-      </div>
     </div>
   );
 }
