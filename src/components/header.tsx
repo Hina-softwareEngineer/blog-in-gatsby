@@ -8,6 +8,8 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ModalSignIn from '../components/modal';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import "./header.css";
 
 import { AuthContext } from '../context/auth/auth';
@@ -44,6 +46,27 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.2em',
     textTransform:"Capitalize",
     fontFamily: "'Karla', serif",
+  },
+  image: {
+    width: 'inherit',
+    height:"inherit"
+    
+  }, imagesubContainer: {
+        margin: '0 20px',
+    marginRight: "10px",
+    border:"1px solid #fff",
+    width: '50px',
+    height: '50px',
+    borderRadius: "50%",
+    overflow:"hidden",
+    
+  },
+  name: {},
+  menu: {
+    cursor: "pointer",
+    display: "flex",
+    alignItems: 'center',
+    textShadow:"0 2px 4px #000"
   }
 
 }));
@@ -52,6 +75,16 @@ export default function Header({ handleOpen,blogs,about}) {
   const classes = useStyles();
 
   const { state, signOut } = useContext(AuthContext);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  console.log(state.user,'user');
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const Signout = () => {
     signOut();
@@ -84,9 +117,27 @@ export default function Header({ handleOpen,blogs,about}) {
             About
         </Typography> */}
           {
-            state.isAuthenticated && !state.isLoading ? <Button className={classes.loginBtn} onClick={Signout}>Sign Out</Button> : <Button onClick={handleOpen} className={classes.loginBtn}>Login</Button>
-          }
+            state.isAuthenticated && !state.isLoading ? <>
+              <div className={classes.menu} onClick={handleClick} aria-controls="simple-menu" aria-haspopup="true">
+                <div className={classes.imagesubContainer}>
+                  <img className={classes.image} src={state.user?.photoURL} alt="profile" />
+                  </div>
+                <h3 className={classes.name}>{state.user?.displayName}</h3>
+              </div>
+           <Menu
+  id="simple-menu"
+  anchorEl={anchorEl}
+style={{top:'6%'}}
+  open={Boolean(anchorEl)}
+  onClose={handleClose}
+>
+            <MenuItem>{state.user?.email}</MenuItem>
+  <MenuItem onClick={Signout}>Logout</MenuItem>
+</Menu>
           
+            </> : 
+              <Button onClick={handleOpen} className={classes.loginBtn}>Login</Button>
+          }
         </Toolbar>
       </AppBar>
       <div className={`${classes.imageContainer} image-Container`}>

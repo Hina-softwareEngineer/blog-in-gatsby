@@ -10,8 +10,6 @@ export const authReducer = (state, action) => {
       return {
         ...state,
         isLoading: true,
-
-        ...state,
         ...action.payload,
         isLoading: false,
         isAuthenticated: true,

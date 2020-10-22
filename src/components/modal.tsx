@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ModalSignIn({ open, handleClose}) { 
   const classes = useStyles();
-  const { signUpwithGoogle, state } = useContext(AuthContext);
+  const { signUpwithGoogle, state,onSignInWithFacebook } = useContext(AuthContext);
   
   const Signup = async () => { 
     signUpwithGoogle();
@@ -79,8 +79,9 @@ export default function ModalSignIn({ open, handleClose}) {
             }}></div>
             }
       >
-        Login with Google
+              Login with Google
       </Button>
+            <Button onClick={onSignInWithFacebook}>Login With Facebook</Button>
                 </div>
             </Fade>
         </Modal>);
