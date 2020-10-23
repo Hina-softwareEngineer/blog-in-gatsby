@@ -47,17 +47,10 @@ const useStyles = makeStyles((theme) => ({
     width: 'inherit',
     height:"inherit"
     
-  }, imagesubContainer: {
-        margin: '0 20px',
-    marginRight: "10px",
-    border:"1px solid #fff",
-    width: '50px',
-    height: '50px',
-    borderRadius: "50%",
-    overflow:"hidden",
-    
   },
-  name: {},
+  name: {
+    margin: "0 10px"
+  },
   menu: {
     cursor: "pointer",
     display: "flex",
@@ -94,9 +87,14 @@ export default function Header({ handleOpen,blogs,about}) {
 
   const onClick = (e) => {
     if (e.target.textContent === 'Blogs') {
-      blogs.current.scrollIntoView({
-        behavior: "smooth", block: "start"
-      })
+      if (window.location.pathname === '/') {
+        blogs.current.scrollIntoView({
+          behavior: "smooth", block: "start"
+        })
+      }
+      else {
+        navigate("/");
+      }
     }
   }
 

@@ -52,7 +52,7 @@ export const BlogData = ({ blog, options, ...props }) => {
     <>
     <Header />
     <div className='main-container'>
-      <Button variant="contained" color="primary" onClick={() => navigate("/")}><ArrowBackIcon /></Button>
+      <Button variant="contained" color="primary" onClick={() => navigate("/")}><ArrowBackIcon />&nbsp; Go Back</Button>
     <div className="main-blog">
       {
         state.isAuthenticated && !state.isLoading ? <>

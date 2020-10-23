@@ -53,6 +53,12 @@ const useStyles = makeStyles({
     footer: {
         margin: '10px 0',
         padding: 0,
+    },
+    pagination: {
+        padding: "30px 0",
+        "& > nav > ul": {
+            justifyContent: 'center'
+        }
     }
 });
   
@@ -99,7 +105,7 @@ export default function Blogs({ handleOpen,blogs }) {
     let FirstPostIndex = LastPostIndex - 5;
     const currentBlogs = data.allContentfulBlogModel.nodes.slice(FirstPostIndex,LastPostIndex);
     
-
+console.log(totalPages,currentBlogs)
     const onLink = (link) => { 
         if (state.isAuthenticated && !state.isLoading) {
             navigate(link);
@@ -150,7 +156,11 @@ export default function Blogs({ handleOpen,blogs }) {
                     </React.Fragment>)
 }       
              </div>
-             {totalPages > 0 ? <Pagination count={totalPages} page={page} onChange={onPageChange} color="primary" />: null}
+             <div className={classes.pagination}>
+             {totalPages > 1 ?
+                 <Pagination count={totalPages} page={page} onChange={onPageChange} color="primary" /> :
+                     <Pagination count={1} page={page} onChange={onPageChange} color="primary" />}
+                 </div>
              </div>
 
     );
