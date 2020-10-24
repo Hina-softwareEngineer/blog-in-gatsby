@@ -1,3 +1,5 @@
+let { SPACE_ID, ACCESS_TOKEN } = process.env;
+
 module.exports = {
   plugins: [
     "gatsby-plugin-typescript",
@@ -19,8 +21,8 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: `gkdw863cbodq`,
-        accessToken: `fmZjnapal4THlQuSnJQwQ2VN4Ua6YAX7w5DLrEE1zhM`,
+        spaceId: SPACE_ID,
+        accessToken: ACCESS_TOKEN,
         forceFullSync: true,
       },
     },
