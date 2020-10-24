@@ -1,0 +1,51 @@
+.info-section{
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
+    padding: 20px;
+    background-color: #f6f6f6;
+    box-shadow: 0 2px 4px lightgrey;
+}
+
+.info-section > h1{
+    font-size: 44px;
+}
+
+.info-section > h3{
+    font-size: 30px;
+    margin: 0;
+}
+
+.info-section > p{
+    font-size: 18px;
+    letter-spacing: 0.7px;
+}
+
+.social-links{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0;
+}
+
+.social-links > li{
+    list-style-type: none;
+}
+
+.social-links > li > a{
+    margin: 0 10px;
+}
+
+.social-links > li > a > svg{
+    font-size: 2.5em;
+}
+
+.linkedin{color: #0073b1;}
+
+.github{color: #24292e}
+
+.twitter{ color: #1da1f2}
+
+.mail{color: #D44638}
+
+.facebook{color: #1877f2}

@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
        width: '-webkit-fill-available',
-       margin: theme.spacing(1),
+       margin: '20px 0',
        display: "flex",
        alignItems: 'center',
        border: "1px solid lightgrey",
@@ -60,11 +60,9 @@ export default function ModalSignIn({ open, handleClose}) {
             <Fade in={open}>
                 <div className={classes.paper}>
             <h2 id="transition-modal-title">Login to Hina Blogs</h2>
-            {/* <p>Login to </p> */}
+            <p>Login to read more articles.</p>
             <Button
               onClick={Signup}
-        // variant="contained"
-        // color="primary"
         size="large"
         className={classes.button}
         startIcon={<div className='icons google' dangerouslySetInnerHTML={{

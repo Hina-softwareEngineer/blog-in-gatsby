@@ -9,26 +9,30 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import EmailIcon from '@material-ui/icons/Email';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import './about.css';
 
 export default function About() {
   return (
     <GlobalAuthProvider>
-    <div>
-      <Header />
+    <div className='about-section'>
+        <Header />
+        <div className='info-section'>
       <h1>About Me</h1>
-      <p>I'm Hina Khadim</p>
-        <p>Future Software Engineer</p>
-        <p>A Full Stack Software Engineer who’s passionate about creating content that can be of value to others. Besides juggling work, content creation and other commitments, I can be found traveling to contemplate the meaning of life under the stars✨
+      <h3>I'm Hina Khadim</h3>
+        <p>Undergraduate Software Engineer</p>
+          <p>
+            A Full Stack Web developer trying to make the world better place through coding. Loves to code in Python and Javascript. 
         </p>
         
-        <div>
-          <li><a href="#"><LinkedInIcon /></a></li>
-          <li><a href="#"><GitHubIcon /></a></li>
-          <li><a href="#"><TwitterIcon /></a></li>
-          <li><a href="#"><EmailIcon /></a></li>
-          <li><a href="#"><FacebookIcon /></a></li>
+        <div className='social-links'>
+          <li><a className='linkedin' href="https://www.linkedin.com/in/hina-khadim-632845178/"><LinkedInIcon /></a></li>
+          <li><a className='github' href="https://github.com/Hina-softwareEngineer"><GitHubIcon /></a></li>
+          <li><a className='twitter' href="http://twitter.com/hinaKhadim_2002"><TwitterIcon /></a></li>
+          <li><a className='mail' href="mailto:hinakhadim2002@gmail.com"><EmailIcon /></a></li>
+          <li><a className='facebook' href="https://www.facebook.com/hina.hina.35574406"><FacebookIcon /></a></li>
           
-        </div>
+          </div>
+          </div>
       </div>
       </GlobalAuthProvider>
   );   
