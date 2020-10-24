@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 import { Link} from 'gatsby';
 import styles from "./about.module.css";
 import Header from '../components/header';
-import { GlobalAuthProvider } from "../context/auth/auth";
+import { GlobalAuthProvider } from "../../context/auth/auth";
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import GitHubIcon from '@material-ui/icons/GitHub';

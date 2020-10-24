@@ -56,7 +56,6 @@ export default function Home() {
         </Typography>
       </div>
         <Blogs blogs={blogs} handleOpen={handleOpen} />
-        {/* <Pagination count={10} page={page} onChange={onPageChange} color="primary" /> */}
       </Layout>
       </GlobalAuthProvider>
   );

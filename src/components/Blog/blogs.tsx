@@ -1,20 +1,18 @@
 import React, { useContext,useState,useEffect } from 'react';
-import { AuthContext} from '../context/auth/auth';
+import { AuthContext} from '../../context/auth/auth';
 import { navigate } from "gatsby";
 import './blogs.css';
-import { GlobalAuthProvider } from '../context/auth/auth';
+import { GlobalAuthProvider } from '../../context/auth/auth';
 import Button from '@material-ui/core/Button';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { MARKS} from '@contentful/rich-text-types'
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import Prism from "prismjs";
-import { Footer} from './footer';
+import { Footer} from '../Footer/footer';
 import "../style/prism.css";
-import Header from '../components/header';
+import Header from '../header';
 
 function Blog(props) {
-  
-  let states = useContext(AuthContext);
 
   const options = {
     renderMark: {
