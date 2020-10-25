@@ -9,7 +9,6 @@ export const authReducer = (state, action) => {
     case "LOADING":
       return {
         ...state,
-        isLoading: true,
         ...action.payload,
         isLoading: false,
         isAuthenticated: true,

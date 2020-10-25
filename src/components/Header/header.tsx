@@ -7,13 +7,13 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import ModalSignIn from '../components/modal';
+import ModalSignIn from '../modal/modal';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import "./header.css";
 import Avatar from '@material-ui/core/Avatar';
 
-import { AuthContext } from '../context/auth/auth';
+import { AuthContext } from '../../context/auth/auth';
 import { auth } from "firebase";
 
 
@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function Header({ handleOpen,blogs,about}) {
+export default function Header({ handleOpen,blogs}) {
   const classes = useStyles();
 
   const { state, signOut } = useContext(AuthContext);

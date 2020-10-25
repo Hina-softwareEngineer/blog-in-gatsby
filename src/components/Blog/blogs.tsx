@@ -7,10 +7,8 @@ import Button from '@material-ui/core/Button';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { MARKS} from '@contentful/rich-text-types'
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
-import Prism from "prismjs";
 import { Footer} from '../Footer/footer';
-import "../style/prism.css";
-import Header from '../header';
+import Header from '../Header/header';
 
 function Blog(props) {
 

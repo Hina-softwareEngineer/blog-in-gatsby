@@ -1,4 +1,6 @@
-let { SPACE_ID, ACCESS_TOKEN } = process.env;
+require("dotenv").config({
+  path: `.env`,
+});
 
 module.exports = {
   plugins: [
@@ -21,8 +23,8 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: SPACE_ID,
-        accessToken: ACCESS_TOKEN,
+        spaceId: process.env.SPACE_ID,
+        accessToken: process.env.ACCESS_TOKEN,
         forceFullSync: true,
       },
     },

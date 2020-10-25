@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useReducer } from "react";
 import firebase from "firebase";
-import firebaseConfig from "../../firebase/firebaseConfig";
+// import firebaseConfig from "../../firebase/firebaseConfig";
 import { authReducer } from "./authReducer";
 
 export const AuthContext = createContext(null);
@@ -14,7 +14,7 @@ let initialState = {
 
 export const GlobalAuthProvider = (props) => {
   let [state, dispatch] = useReducer(authReducer, initialState);
-
+  // console.log(firebaseConfig, "res");
   const signUpwithGoogle = () => {
     var provider = new firebase.auth.GoogleAuthProvider();
 
@@ -32,10 +32,6 @@ export const GlobalAuthProvider = (props) => {
         });
       })
       .catch(function (error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        var email = error.email;
-        var credential = error.credential;
         dispatch({
           type: "LOGIN_FAILED",
           payload: error,
@@ -59,10 +55,6 @@ export const GlobalAuthProvider = (props) => {
         });
       })
       .catch(function (error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        var email = error.email;
-        var credential = error.credential;
         dispatch({
           type: "LOGIN_FAILED",
           payload: error,
@@ -71,7 +63,6 @@ export const GlobalAuthProvider = (props) => {
   };
 
   const getSignedInUser = async () => {
-    let userReturn = undefined;
     await firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         dispatch({

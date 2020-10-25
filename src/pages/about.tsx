@@ -1,21 +1,19 @@
 import React from "react";
-import Layout from "../components/Layout";
 import { Link} from 'gatsby';
-import styles from "./about.module.css";
-import Header from '../components/header';
-import { GlobalAuthProvider } from "../../context/auth/auth";
+import Header from '../components/Header/header';
+import { GlobalAuthProvider } from "../context/auth/auth";
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import EmailIcon from '@material-ui/icons/Email';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import './about.css';
+// import './about.css';
 
 export default function About() {
   return (
     <GlobalAuthProvider>
     <div className='about-section'>
-        <Header />
+        {/* <Header /> */}
         <div className='info-section'>
       <h1>About Me</h1>
       <h3>I'm Hina Khadim</h3>

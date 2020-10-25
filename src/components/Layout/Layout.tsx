@@ -1,10 +1,6 @@
 import React, { ReactNode } from "react";
-import Header from "./header";
-import { Footer} from './footer';
-
-type LayoutProps = {
-  children: ReactNode;
-};
+import Header from "../Header/header";
+import { Footer} from '../Footer/footer';
 
 export default function Layout({ children , handleOpen, blogs }) {
   return (
