@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useReducer } from "react";
 import firebase from "firebase";
-// import firebaseConfig from "../../firebase/firebaseConfig";
+import firebaseConfig from "../../firebase/firebaseConfig";
 import { authReducer } from "./authReducer";
 
 export const AuthContext = createContext(null);
@@ -14,8 +14,7 @@ let initialState = {
 
 export const GlobalAuthProvider = (props) => {
   let [state, dispatch] = useReducer(authReducer, initialState);
-  // console.log(firebaseConfig, "res");
-  const signUpwithGoogle = () => {
+  const signUpwithGoogle = (callBack) => {
     var provider = new firebase.auth.GoogleAuthProvider();
 
     firebase
@@ -30,6 +29,7 @@ export const GlobalAuthProvider = (props) => {
           payload: user,
           accessToken: token,
         });
+        callBack();
       })
       .catch(function (error) {
         dispatch({
@@ -39,7 +39,7 @@ export const GlobalAuthProvider = (props) => {
       });
   };
 
-  const onSignInWithFacebook = () => {
+  const onSignInWithFacebook = (callBack) => {
     var provider = new firebase.auth.FacebookAuthProvider();
 
     firebase
@@ -53,6 +53,7 @@ export const GlobalAuthProvider = (props) => {
           payload: user,
           accessToken: token,
         });
+        callBack();
       })
       .catch(function (error) {
         dispatch({

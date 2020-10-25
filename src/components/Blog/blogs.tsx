@@ -38,11 +38,6 @@ export default Blog;
 
 export const BlogData = ({ blog, options, ...props }) => {
   let { state } = useContext(AuthContext);
-  
-   useEffect(() => {
-      Prism.highlightAll();
-  }, [])
- 
 
   return (
     <>

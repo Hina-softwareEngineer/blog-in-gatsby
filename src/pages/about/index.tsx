@@ -1,25 +1,25 @@
 import React from "react";
 import { Link} from 'gatsby';
-import Header from '../components/Header/header';
-import { GlobalAuthProvider } from "../context/auth/auth";
+import Header from '../../components/Header/header';
+import { GlobalAuthProvider } from "../../context/auth/auth";
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import EmailIcon from '@material-ui/icons/Email';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
-// import './about.css';
+import './about.css';
 
 export default function About() {
   return (
     <GlobalAuthProvider>
     <div className='about-section'>
-        {/* <Header /> */}
+        <Header />
         <div className='info-section'>
       <h1>About Me</h1>
       <h3>I'm Hina Khadim</h3>
-        <p>Undergraduate Software Engineer</p>
+        <p>Undergraduate Software Engineer | Learner | Mentor</p>
           <p>
-            A Full Stack Web developer trying to make the world better place through coding. Loves to code in Python and Javascript. 
+            A Full Stack Web developer trying to make the world better place through coding 😇. Loves to code in Python and Javascript.💜 
         </p>
         
         <div className='social-links'>

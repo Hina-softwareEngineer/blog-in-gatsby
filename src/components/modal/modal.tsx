@@ -4,7 +4,6 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Button from '@material-ui/core/Button';
-import SaveIcon from '@material-ui/icons/Save';
 import { AuthContext } from '../../context/auth/auth';
 import "./modal.css";
 
@@ -40,8 +39,10 @@ export default function ModalSignIn({ open, handleClose}) {
   const { signUpwithGoogle, state,onSignInWithFacebook } = useContext(AuthContext);
   
   const Signup = async () => { 
-    signUpwithGoogle();
-    setTimeout(() => { handleClose();}, 5000);
+    signUpwithGoogle(handleClose);
+  }
+  const SignInFaceBook = () => { 
+    onSignInWithFacebook(handleClose);
   }
 
     return (
@@ -79,7 +80,7 @@ export default function ModalSignIn({ open, handleClose}) {
       >
               Login with Google
       </Button>
-            <Button className={classes.button} onClick={onSignInWithFacebook} startIcon={
+            <Button className={classes.button} onClick={SignInFaceBook} startIcon={
               <div dangerouslySetInnerHTML={{
                 __html: `
                 <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">

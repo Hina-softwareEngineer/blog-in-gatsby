@@ -42,8 +42,7 @@ export default function Home() {
    
   return (
     <GlobalAuthProvider>
-      <div>hina</div>
-      {/* <ModalSignIn open={open} handleClose={handleClose} />
+      <ModalSignIn open={open} handleClose={handleClose} />
       <Layout blogs={blogs} handleOpen={handleOpen} >
         <div className={`${classes.imageContainer} image-Container`}>
         <img src="https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80" alt="Blog post" />
@@ -56,7 +55,7 @@ export default function Home() {
         </Typography>
       </div>
         <Blogs blogs={blogs} handleOpen={handleOpen} />
-      </Layout> */}
+      </Layout>
       </GlobalAuthProvider>
   );
 }

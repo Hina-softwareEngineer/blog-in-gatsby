@@ -68,14 +68,14 @@ export default function Header({ handleOpen,blogs}) {
   const classes = useStyles();
 
   const { state, signOut } = useContext(AuthContext);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(false);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
-    setAnchorEl(null);
+    setAnchorEl(false);
   };
 
   const Signout = () => {
@@ -113,9 +113,6 @@ export default function Header({ handleOpen,blogs}) {
           {
             state.isAuthenticated && !state.isLoading ? <>
               <div className={classes.menu} onClick={handleClick} aria-controls="simple-menu" aria-haspopup="true">
-                {/* <div className={classes.imagesubContainer}>
-                  <img className={classes.image} src={state.user?.photoURL} alt="profile" />
-                  </div> */}
                 <Avatar src={state.user?.photoURL || "/broken-image.jpg"} className={classes.large} />
                 <h3 className={classes.name}>{state.user?.displayName}</h3>
               </div>
