@@ -45,14 +45,16 @@ export default function Home() {
       <ModalSignIn open={open} handleClose={handleClose} />
       <Layout blogs={blogs} handleOpen={handleOpen} >
         <div className={`${classes.imageContainer} image-Container`}>
-        <img src="https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80" alt="Blog post" />
+          <img src="https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80" alt="Blog post" />
+          <div className="intro">
         <Typography   variant="h6" color="textSecondary" className="about-me">
           <h3 className="h3-about">Hi Guys! <div className='hand'>👋</div></h3>
           <h1 className="about-name">HINA KHADIM here</h1>
           <h5 className='info-about'>Future Software Engineer!  🥰🥰 | 
           Love to Code❤️❤️ <br /> Full Stack Developer✨✨ | MERN Developer ☘️☘️|
            Python Developer⭐️⭐️ | Javascript Developer 🔥 🔥</h5>
-        </Typography>
+            </Typography>
+            </div>
       </div>
         <Blogs blogs={blogs} handleOpen={handleOpen} />
       </Layout>

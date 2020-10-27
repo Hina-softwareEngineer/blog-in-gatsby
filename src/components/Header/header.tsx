@@ -108,10 +108,6 @@ export default function Header({ handleOpen,blogs}) {
           <Typography variant="h6" className={classes.title}>
             HINA KHADIM
           </Typography>
-{/* 
-          {
-            screen
-          } */}
 
           <Button onClick={onClick}  className={classes.loginBtn} >Blogs</Button>
           <Button onClick={() => {
