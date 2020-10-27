@@ -6,12 +6,13 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import ModalSignIn from '../modal/modal';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import "./header.css";
 import Avatar from '@material-ui/core/Avatar';
+import MenuIcon from '@material-ui/icons/Menu';
+import { useTheme } from '@material-ui/core/styles';
 
 import { AuthContext } from '../../context/auth/auth';
 import { auth } from "firebase";
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '0',
     color: '#fff',
     fontSize: '1.2em',
-    textTransform:"Capitalize",
+    // textTransform:"Capitalize",
     fontFamily: "'Karla', serif",
   },
   image: {
@@ -67,6 +68,8 @@ const useStyles = makeStyles((theme) => ({
 export default function Header({ handleOpen,blogs}) {
   const classes = useStyles();
 
+  const theme = useTheme();
+  console.log(theme,'the,e')
   const { state, signOut } = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = React.useState(false);
 
@@ -105,6 +108,10 @@ export default function Header({ handleOpen,blogs}) {
           <Typography variant="h6" className={classes.title}>
             HINA KHADIM
           </Typography>
+{/* 
+          {
+            screen
+          } */}
 
           <Button onClick={onClick}  className={classes.loginBtn} >Blogs</Button>
           <Button onClick={() => {
