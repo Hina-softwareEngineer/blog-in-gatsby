@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     width: "500px",
     borderRadius: "5px",
+    margin: '0 15px',
     background: "#fff",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),

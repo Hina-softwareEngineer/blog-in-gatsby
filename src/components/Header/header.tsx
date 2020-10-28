@@ -15,6 +15,18 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
+import PersonIcon from '@material-ui/icons/Person';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+
+import BrightnessHighIcon from '@material-ui/icons/BrightnessHigh';
+import Brightness3Icon from '@material-ui/icons/Brightness3';
+
 import { AuthContext } from '../../context/auth/auth';
 import { auth } from "firebase";
 
@@ -75,8 +87,13 @@ export default function Header({ handleOpen,blogs}) {
   const { state, signOut } = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = React.useState(false);
 
-  const toggleDrawer = () => { 
-    setDrawerState(!drawerState);
+  const toggleDrawer = (option) => { 
+    if (option === 'close') {
+      setDrawerState(false);
+    }
+    else if (option == null) { 
+setDrawerState(!drawerState);
+    }
   }
 
     useEffect(() => { 
@@ -146,9 +163,18 @@ export default function Header({ handleOpen,blogs}) {
           
             </> : 
               <Button onClick={handleOpen} className={classes.loginBtn}>Login</Button>
-              }</> : <><MenuIcon onClick={toggleDrawer} />
-          <Drawer anchor={'left'} open={drawerState} onClose={toggleDrawer}>
-            <li>Hina herer</li>
+              }</> : <><MenuIcon onClick={()=> toggleDrawer(null)} />
+          <Drawer anchor={'left'} open={drawerState} onClose={()=>toggleDrawer('close')}>
+                  
+                  <div style={{padding:"8px 0",width:"250px"}}>
+                    <List>
+                  <ListItem onClick={()=> toggleDrawer("close")} button key={"hina"}>
+            <ListItemIcon><LibraryBooksIcon /></ListItemIcon>
+            <ListItemText primary={"Mail"} />
+                    </ListItem>
+                    </List>
+                    
+                    </div>
           </Drawer></>
           }
         </Toolbar>
