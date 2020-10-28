@@ -20,12 +20,16 @@ import Divider from '@material-ui/core/Divider';
 
 import { AuthContext } from '../../context/auth/auth';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
         display: "flex",
         margin: "20px 0",
         boxShadow: "none",
-        alignItems:'center',
+        alignItems: 'center',
+        [theme.breakpoints.down('xs')]: {
+            flexDirection: "column",
+        textAlign:"center"
+    },
     },
     media: {
         width: "300px",
@@ -34,13 +38,24 @@ const useStyles = makeStyles({
     imageButton: {
         width: '300px',
         height:"200px",
-        margin: "0 30px"
+        margin: "0 30px",
+        [theme.breakpoints.down('xs')]: {
+        marginTop: '20px'
+    },
     },
     readMore: {
         color: '#3f51b5',
         cursor: "pointer",
         fontWeight: 'bold',
         fontFamily: "'Karla', serif",
+        [theme.breakpoints.down('xs')]: {
+        width: '100%'
+    },
+    },
+    cardBody: {
+        [theme.breakpoints.down('xs')]: {
+            margin: '20px 30px'
+    },
     },
     date: {
         letterSpacing: '1.3px',
@@ -60,7 +75,7 @@ const useStyles = makeStyles({
             justifyContent: 'center'
         }
     }
-});
+}));
   
 // karla font family
 // crimson text font family heading
@@ -69,10 +84,11 @@ export default function Blogs({ handleOpen,blogs }) {
     const classes = useStyles();
     const { state } = useContext(AuthContext);
     const [page, setPage] = useState(1);
-      const onPageChange = (event,page) => { 
-          console.log(page);
-          setPage(page);
-  }
+    const onPageChange = (event, page) => {
+        console.log(page);
+        setPage(page);
+    }
+   
     const data = useStaticQuery(
         graphql`
           query {
@@ -131,7 +147,7 @@ console.log(totalPages,currentBlogs)
                                 title={blog.title}
                             />
                         </CardActionArea>
-                        <CardContent>
+                        <CardContent className={classes.cardBody}>
                         <Typography className={classes.date} variant="body2" color="textSecondary" component="p">
                                 {blog.publishedDate}
                         </Typography>

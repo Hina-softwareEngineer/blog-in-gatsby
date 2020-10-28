@@ -1,4 +1,4 @@
-import React, { useState,useContext,createRef} from "react";
+import React, { useState,useContext,useEffect,createRef} from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { navigate} from 'gatsby';
 import AppBar from '@material-ui/core/AppBar';
@@ -13,6 +13,7 @@ import "./header.css";
 import Avatar from '@material-ui/core/Avatar';
 import MenuIcon from '@material-ui/icons/Menu';
 import { useTheme } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
 
 import { AuthContext } from '../../context/auth/auth';
 import { auth } from "firebase";
@@ -67,11 +68,22 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header({ handleOpen,blogs}) {
   const classes = useStyles();
+  const [resize, setResize] = useState(null);
+  const [drawerState, setDrawerState] = useState(false);
 
   const theme = useTheme();
-  console.log(theme,'the,e')
   const { state, signOut } = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = React.useState(false);
+
+  const toggleDrawer = () => { 
+    setDrawerState(!drawerState);
+  }
+
+    useEffect(() => { 
+        window.addEventListener('resize', () => setResize(window.innerWidth));
+        
+        () => window.removeEventListener("resize", () => setResize(window.innerWidth));
+    }, []);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -109,6 +121,8 @@ export default function Header({ handleOpen,blogs}) {
             HINA KHADIM
           </Typography>
 
+          {
+            theme.breakpoints.values.sm <= resize ? <>
           <Button onClick={onClick}  className={classes.loginBtn} >Blogs</Button>
           <Button onClick={() => {
             navigate("/about")
@@ -120,18 +134,22 @@ export default function Header({ handleOpen,blogs}) {
                 <h3 className={classes.name}>{state.user?.displayName}</h3>
               </div>
            <Menu
-  id="simple-menu"
-  anchorEl={anchorEl}
-style={{top:'6%'}}
-  open={Boolean(anchorEl)}
-  onClose={handleClose}
->
+            id="simple-menu"
+            anchorEl={anchorEl}
+              style={{top:'6%'}}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+                  >
             <MenuItem>{state.user?.email}</MenuItem>
-  <MenuItem onClick={Signout}>Logout</MenuItem>
-</Menu>
+            <MenuItem onClick={Signout}>Logout</MenuItem>
+          </Menu>
           
             </> : 
               <Button onClick={handleOpen} className={classes.loginBtn}>Login</Button>
+              }</> : <><MenuIcon onClick={toggleDrawer} />
+          <Drawer anchor={'left'} open={drawerState} onClose={toggleDrawer}>
+            <li>Hina herer</li>
+          </Drawer></>
           }
         </Toolbar>
       </AppBar>

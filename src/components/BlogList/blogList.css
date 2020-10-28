@@ -12,6 +12,12 @@
     font-weight: 500;
 }
 
+@media screen and (max-width: 600px){
+    .blog-list > h1{
+        margin-left: 15px;
+    }
+}
+
 .divider{
     width: 100%;
     height: 1px;
