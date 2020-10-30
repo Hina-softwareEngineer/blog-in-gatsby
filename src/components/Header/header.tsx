@@ -104,8 +104,9 @@ setDrawerState(!drawerState);
     }
   }
 
-    useEffect(() => { 
-        window.addEventListener('resize', () => setResize(window.innerWidth));
+  useEffect(() => { 
+    window.addEventListener('resize', () => setResize(window.innerWidth));
+    setResize(window.innerWidth);
         
         () => window.removeEventListener("resize", () => setResize(window.innerWidth));
     }, []);

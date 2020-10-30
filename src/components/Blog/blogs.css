@@ -12,7 +12,7 @@
 
 .main-blog{
     max-width: 800px;
-    margin: 0 auto;
+    margin: 0 10px;
 }
 
 
@@ -92,10 +92,6 @@ pre::-webkit-scrollbar-thumb:hover {
 }
 
 @media screen and (max-width: 600px){
-
-.main-blog{
-    margin: 0 10px;
-}
 
 .images-inside-container{
     height: 200px;
