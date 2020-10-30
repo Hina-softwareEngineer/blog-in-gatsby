@@ -74,7 +74,15 @@ const useStyles = makeStyles((theme) => ({
   large: {
     width: theme.spacing(7),
     height: theme.spacing(7),
+    [theme.breakpoints.down('xs')]: {
+      margin: '20px auto',
+      width: '80px',
+      height: '80px'
+    },
   },
+  mobileProfile: {
+    textAlign:"center"
+  }
 
 }));
 
@@ -168,10 +176,41 @@ setDrawerState(!drawerState);
                   
                   <div style={{padding:"8px 0",width:"250px"}}>
                     <List>
-                  <ListItem onClick={()=> toggleDrawer("close")} button key={"hina"}>
+                      {
+                        state.isAuthenticated && !state.isLoading ?
+                          <div className={classes.mobileProfile}>
+                            <Avatar src={state.user?.photoURL || "/broken-image.jpg"} className={classes.large} />
+                            <h3 className={classes.name}>{state.user?.displayName}</h3>
+                            <p style={{padding: '0 5px', fontSize: "13px", margin: '5px 0', marginBottom :"20px"}}>{state.user?.email}</p>
+                        </div> : 
+                           null
+                      }
+                      
+                      <ListItem onClick={(e) => {toggleDrawer("close");  onClick(e); }} button key={"blogs"}>
             <ListItemIcon><LibraryBooksIcon /></ListItemIcon>
-            <ListItemText primary={"Mail"} />
-                    </ListItem>
+            <ListItemText primary={"Blogs"} />
+                      </ListItem>
+                      <ListItem onClick={() => {
+                        navigate("/about");
+                        toggleDrawer("close");
+                      }} button key={"About"}>
+            <ListItemIcon><PersonIcon /></ListItemIcon>
+            <ListItemText primary={"About"} />
+                      </ListItem>
+                      {
+                        state.isAuthenticated && !state.isLoading ? 
+                           <ListItem onClick={Signout}  button key={"Logout"}>
+            <ListItemIcon><ArrowBackIcon /></ListItemIcon>
+            <ListItemText primary={"Logout"} />
+                          </ListItem>
+                          :  
+                          <ListItem onClick={(e) => { handleOpen(e); setDrawerState(false); }}   button key={"Login"}>
+            <ListItemIcon><ExitToAppIcon /></ListItemIcon>
+            <ListItemText primary={"Login"} />
+                      </ListItem> 
+                      }
+                    
+                    
                     </List>
                     
                     </div>

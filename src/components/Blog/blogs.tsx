@@ -20,7 +20,7 @@ function Blog(props) {
       "embedded-asset-block": node => {
         const alt = node.data.target.fields.title["en-US"]
         const url = node.data.target.fields.file["en-US"].url
-        return <img className="images-inside-container" alt={alt} src={url} />
+        return <img loading='lazy' className="images-inside-container" alt={alt} src={url} />
       },
     },
   }
@@ -43,7 +43,11 @@ export const BlogData = ({ blog, options, ...props }) => {
     <>
     <Header />
     <div className='main-container'>
-      <Button variant="contained" color="primary" onClick={() => navigate("/")}><ArrowBackIcon />&nbsp; Go Back</Button>
+        <Button style={{
+          borderRadius: '50%',
+          padding: "20px 0",
+          margin: "10px"
+}}  onClick={() => navigate("/")}><ArrowBackIcon /></Button>
     <div className="main-blog">
       {
         state.isAuthenticated && !state.isLoading ? <>
@@ -52,7 +56,7 @@ export const BlogData = ({ blog, options, ...props }) => {
 
           <p className='date'>{blog.publishedDate}</p>
 
-          <img className='feature-image' src={blog.featuredImage} alt="alter girl" />
+          <img className='feature-image' loading='lazy' src={blog.featuredImage} alt="alter girl" />
             <div className='post-content'>{documentToReactComponents(blog.body, options)}</div>
             <Footer />
         </> : (!state.isAuthenticated && !state.isLoading ? <div>Loading...</div> : <div>Error...</div>)
