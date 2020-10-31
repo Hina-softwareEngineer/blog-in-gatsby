@@ -13,7 +13,7 @@ export default function About() {
   return (
     <GlobalAuthProvider>
     <div className='about-section'>
-        <Header />
+        <Header handleOpen={() => { console.log("hellow")}} blogs={null} />
         <div className='info-section'>
       <h1>About Me</h1>
       <h3>I'm Hina Khadim</h3>

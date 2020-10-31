@@ -1,15 +1,18 @@
-import React,{useState,createRef} from "react";
-import Header from '../components/Header/header';
-import Blogs from '../components/BlogList/blogList';
-import Blog from '../components/Blog/blogs';
+import React, { useState, createRef } from "react";
+
 import Layout from '../components/Layout/Layout';
+import Blogs from '../components/BlogList/blogList';
+
 import { GlobalAuthProvider } from "../context/auth/auth";
+
+
+import * as classCss from '../style/modules/main.module.css';
+import {data } from '../../data';
+// material styles
 import { makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import ModalSignIn from '../components/modal/modal';
 import Typography from '@material-ui/core/Typography';
-import Pagination from '@material-ui/lab/Pagination';
+
 
 const useStyles = makeStyles((theme) => ({
   imageContainer: {
@@ -23,9 +26,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
 export default function Home() {
   const [open, setOpen] = useState(false);
-  const [page, setPage] = useState(1);
   const classes = useStyles();
   
   let blogs = createRef();
@@ -37,8 +41,6 @@ export default function Home() {
   const handleClose = () => {
     setOpen(false);
   };
-
-
    
   return (
     <GlobalAuthProvider>
@@ -46,11 +48,15 @@ export default function Home() {
       <Layout blogs={blogs} handleOpen={handleOpen} >
         <div className={`${classes.imageContainer} image-Container`}>
           <img loading='lazy' src="https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80" alt="Blog post" />
-          <div className="intro">
-        <Typography   variant="h6" color="textSecondary" className="about-me">
-          <h3 className="h3-about">Hi Guys! <div className='hand'>👋</div></h3>
-          <h1 className="about-name">HINA KHADIM here</h1>
-          <h5 className='info-about'>Future Software Engineer!  🥰🥰 | 
+          <div className={
+            classCss.intro
+          }>
+            <Typography variant="h6" color="textSecondary" className={
+              classCss.aboutMe
+            }>
+              <h3 className={classCss.h3About}>Hi Guys! <div className={classCss.hand}>👋</div></h3>
+              <h1 className={classCss.aboutName}>{data.name} here</h1>
+          <h5 className={classCss.aboutName}>Future Software Engineer!  🥰🥰 | 
           Love to Code❤️❤️ <br /> Full Stack Developer✨✨ | MERN Developer ☘️☘️|
            Python Developer⭐️⭐️ | Javascript Developer 🔥 🔥</h5>
             </Typography>

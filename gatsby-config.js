@@ -3,6 +3,11 @@ require("dotenv").config({
 });
 
 module.exports = {
+  siteMetadata: {
+    title: `HINA KHADIM BLOGS`,
+    description: `Hey folks, Are you interested in knowing how to become 
+    a professional Software Engineer or do you want to know my Coding Journey?...`,
+  },
   plugins: [
     "gatsby-plugin-typescript",
     `gatsby-plugin-material-ui`,

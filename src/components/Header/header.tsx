@@ -93,7 +93,7 @@ export default function Header({ handleOpen,blogs}) {
 
   const theme = useTheme();
   const { state, signOut } = useContext(AuthContext);
-  const [anchorEl, setAnchorEl] = React.useState(false);
+  const [anchorEl, setAnchorEl] = useState(false);
 
   const toggleDrawer = (option) => { 
     if (option === 'close') {
