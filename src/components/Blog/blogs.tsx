@@ -1,14 +1,18 @@
-import React, { useContext,useState,useEffect } from 'react';
-import { AuthContext} from '../../context/auth/auth';
-import { navigate } from "gatsby";
+import React, { useContext } from 'react';
+import { GlobalAuthProvider, AuthContext } from '../../context/auth/auth';
+
 import './blogs.css';
-import { GlobalAuthProvider } from '../../context/auth/auth';
+
+import { navigate } from "gatsby";
+import { MARKS } from '@contentful/rich-text-types';
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+
+import Header from '../Header/header';
+import { Footer } from '../Footer/footer';
+
 import Button from '@material-ui/core/Button';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import { MARKS} from '@contentful/rich-text-types'
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
-import { Footer} from '../Footer/footer';
-import Header from '../Header/header';
+
 
 function Blog(props) {
 
@@ -36,7 +40,10 @@ function Blog(props) {
 export default Blog;
 
 
-export const BlogData = ({ blog, options, ...props }) => {
+
+
+
+const BlogData = ({ blog, options, ...props }) => {
   let { state } = useContext(AuthContext);
 
   return (
@@ -47,22 +54,24 @@ export const BlogData = ({ blog, options, ...props }) => {
           borderRadius: '50%',
           padding: "20px 0",
           margin: "10px"
-}}  onClick={() => navigate("/")}><ArrowBackIcon /></Button>
-    <div className="main-blog">
-      {
-        state.isAuthenticated && !state.isLoading ? <>
-          
-          <h1>{blog.title}</h1>
-
-          <p className='date'>{blog.publishedDate}</p>
-
-          <img className='feature-image' loading='lazy' src={blog.featuredImage} alt="alter girl" />
-            <div className='post-content'>{documentToReactComponents(blog.body, options)}</div>
-            <Footer />
-        </> : (!state.isAuthenticated && !state.isLoading ? <div>Loading...</div> : <div>Error...</div>)
-      }
+        }} onClick={() => navigate("/")}>
+          <ArrowBackIcon />
+        </Button>
+      <div className="main-blog">
+        {
+            state.isAuthenticated && !state.isLoading ?
+              <>
+                <h1>{blog.title}</h1>
+                <p className='date'>{blog.publishedDate}</p>
+                <img className='feature-image' loading='lazy' src={blog.featuredImage} alt="alter girl" />
+                <div className='post-content'>{documentToReactComponents(blog.body, options)}</div>
+                <Footer center={true} />
+              </>
+              :
+              (!state.isAuthenticated && !state.isLoading ? <div>Loading...</div> : <div>Error...</div>)
+        }
       </div>
-      </div>
-      </>
+    </div>
+    </>
   );
 }

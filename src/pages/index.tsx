@@ -1,4 +1,4 @@
-import React, { useState, createRef } from "react";
+import React, { useState, createRef,Ref } from "react";
 
 import Layout from '../components/Layout/Layout';
 import Blogs from '../components/BlogList/blogList';
@@ -29,23 +29,23 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function Home() {
-  const [open, setOpen] = useState(false);
+  const [openLoginModal, setOpenLoginModal] = useState(false);
   const classes = useStyles();
   
-  let blogs = createRef();
+  let blogsHeadingRef = createRef<HTMLHeadingElement>();
 
-  const handleOpen = () => {
-    setOpen(true);
+  const handleOpenLoginModal = () => {
+    setOpenLoginModal(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleCloseLoginModal = () => {
+    setOpenLoginModal(false);
   };
    
   return (
     <GlobalAuthProvider>
-      <ModalSignIn open={open} handleClose={handleClose} />
-      <Layout blogs={blogs} handleOpen={handleOpen} >
+      <ModalSignIn open={openLoginModal} handleClose={handleCloseLoginModal} />
+      <Layout blogsHeadingRef={blogsHeadingRef} handleOpenLoginModal={handleOpenLoginModal} >
         <div className={`${classes.imageContainer} image-Container`}>
           <img loading='lazy' src="https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80" alt="Blog post" />
           <div className={
@@ -62,7 +62,7 @@ export default function Home() {
             </Typography>
             </div>
       </div>
-        <Blogs blogs={blogs} handleOpen={handleOpen} />
+        <Blogs blogsHeadingRef={blogsHeadingRef} handleOpenLoginModal={handleOpenLoginModal} />
       </Layout>
       </GlobalAuthProvider>
   );

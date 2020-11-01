@@ -1,24 +1,20 @@
 import React,{useContext,useState} from 'react';
-import { navigate } from "gatsby";
+import { navigate, useStaticQuery, graphql } from "gatsby";
 import "./blogList.css"
 
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
-import { Link } from "gatsby";
-import Avatar from '@material-ui/core/Avatar';
-import { useStaticQuery, graphql } from "gatsby";
+import { AuthContext } from '../../context/auth/auth';
+
+// material styles
 import Pagination from '@material-ui/lab/Pagination';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Divider from '@material-ui/core/Divider';
-
-
-import { AuthContext } from '../../context/auth/auth';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -80,13 +76,24 @@ const useStyles = makeStyles((theme) => ({
 // karla font family
 // crimson text font family heading
 
-export default function Blogs({ handleOpen,blogs }) {
+export default function Blogs({ handleOpenLoginModal,blogsHeadingRef }) {
     const classes = useStyles();
     const { state } = useContext(AuthContext);
-    const [page, setPage] = useState(1);
+    const [pageNumber, setPageNumber] = useState(1);
+    
+    
     const onPageChange = (event, page) => {
-        console.log(page);
-        setPage(page);
+        setPageNumber(page);
+    }
+
+
+    const onLink = (link) => { 
+        if (state.isAuthenticated && !state.isLoading) {
+            navigate(link);
+        }
+        else { 
+            handleOpenLoginModal();
+        }
     }
    
     const data = useStaticQuery(
@@ -115,26 +122,18 @@ export default function Blogs({ handleOpen,blogs }) {
         `
     );
 
-    console.log(data, 'data');
+
+    // for pagination
     let totalPages = Math.ceil(data.allContentfulBlogModel.nodes.length / 5);
-    let LastPostIndex = page * 5;
+    let LastPostIndex = pageNumber * 5;
     let FirstPostIndex = LastPostIndex - 5;
     const currentBlogs = data.allContentfulBlogModel.nodes.slice(FirstPostIndex,LastPostIndex);
-    
-console.log(totalPages,currentBlogs)
-    const onLink = (link) => { 
-        if (state.isAuthenticated && !state.isLoading) {
-            navigate(link);
-        }
-        else { 
-            handleOpen();
-        }
-    }
+
     
      return (
          <div className="blog-list">
 
-             <h1 ref={blogs}>Latest Blogs</h1>
+             <h1 ref={blogsHeadingRef}>Latest Blogs</h1>
              <div className="divider"></div>
              <div>
              {
@@ -174,8 +173,8 @@ console.log(totalPages,currentBlogs)
              </div>
              <div className={classes.pagination}>
              {totalPages > 1 ?
-                 <Pagination count={totalPages} page={page} onChange={onPageChange} color="primary" /> :
-                     <Pagination count={1} page={page} onChange={onPageChange} color="primary" />}
+                 <Pagination count={totalPages} page={pageNumber} onChange={onPageChange} color="primary" /> :
+                     <Pagination count={1} page={pageNumber} onChange={onPageChange} color="primary" />}
                  </div>
              </div>
 
