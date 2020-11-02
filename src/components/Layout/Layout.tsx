@@ -1,11 +1,11 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import Header from "../Header/header";
 import { Footer} from '../Footer/footer';
 
-export default function Layout({ children , handleOpenLoginModal, blogsHeadingRef }) {
+export default function Layout({ children }) {
   return (
     <div>
-      <Header blogsHeadingRef={blogsHeadingRef} handleOpenLoginModal={handleOpenLoginModal} title="Header of a Page" />
+      <Header  />
       {children}
       <Footer center={true} />
     </div>

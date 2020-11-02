@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useReducer } from "react";
+import React, { createContext, useState,useEffect, useReducer,createRef } from "react";
 import firebase from "firebase";
 import firebaseConfig from "../../firebase/firebaseConfig";
 import { authReducer } from "./authReducer";
@@ -14,6 +14,7 @@ let initialState = {
 
 export const GlobalAuthProvider = (props) => {
   let [state, dispatch] = useReducer(authReducer, initialState);
+
   const signUpwithGoogle = (callBack) => {
     var provider = new firebase.auth.GoogleAuthProvider();
 
@@ -98,7 +99,7 @@ export const GlobalAuthProvider = (props) => {
 
   return (
     <AuthContext.Provider
-      value={{ state, signUpwithGoogle, signOut, onSignInWithFacebook }}
+      value={{ state, signUpwithGoogle, signOut, onSignInWithFacebook}}
     >
       {props.children}
     </AuthContext.Provider>

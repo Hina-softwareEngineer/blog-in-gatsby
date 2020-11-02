@@ -3,6 +3,8 @@ import { navigate } from 'gatsby';
 
 import "./header.css";
 
+import ModalSignIn from '../modal/modal';
+
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -24,6 +26,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 import { AuthContext } from '../../context/auth/auth';
+import { ModalContext, ModalContextProvider } from '../../context/modal/modal';
 import { data } from '../../../data';
 
 
@@ -83,12 +86,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-interface Props { 
-  handleOpenLoginModal?: Function,
-  blogsHeadingRef ?: React.Ref<HTMLHeadingElement>
-}
-
-export default function Header({ handleOpenLoginModal, blogsHeadingRef }) {
+export default function Header() {
   
   const classes = useStyles();
   const theme = useTheme();
@@ -97,6 +95,7 @@ export default function Header({ handleOpenLoginModal, blogsHeadingRef }) {
   const [anchorEl, setAnchorEl] = useState(false);
   const [drawerState, setDrawerState] = useState(false);
   const { state, signOut } = useContext(AuthContext);
+  const { handleOpenLoginModal, blogsHeadingRef,openLoginModal, handleCloseLoginModal} = useContext(ModalContext);
 
 
   const toggleDrawer = (option) => { 
@@ -145,6 +144,7 @@ export default function Header({ handleOpenLoginModal, blogsHeadingRef }) {
   
   return (
     <div>
+      <ModalSignIn open={openLoginModal} handleClose={handleCloseLoginModal} />
       <AppBar className="header" position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>

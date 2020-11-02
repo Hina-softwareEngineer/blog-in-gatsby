@@ -1,10 +1,10 @@
-import React, { useState, createRef,Ref } from "react";
+import React, { useContext } from "react";
 
 import Layout from '../components/Layout/Layout';
 import Blogs from '../components/BlogList/blogList';
 
 import { GlobalAuthProvider } from "../context/auth/auth";
-
+import { ModalContext, ModalContextProvider } from '../context/modal/modal';
 
 import * as classCss from '../style/modules/main.module.css';
 import {data } from '../../data';
@@ -29,23 +29,23 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function Home() {
-  const [openLoginModal, setOpenLoginModal] = useState(false);
-  const classes = useStyles();
-  
-  let blogsHeadingRef = createRef<HTMLHeadingElement>();
-
-  const handleOpenLoginModal = () => {
-    setOpenLoginModal(true);
-  };
-
-  const handleCloseLoginModal = () => {
-    setOpenLoginModal(false);
-  };
-   
   return (
     <GlobalAuthProvider>
-      <ModalSignIn open={openLoginModal} handleClose={handleCloseLoginModal} />
-      <Layout blogsHeadingRef={blogsHeadingRef} handleOpenLoginModal={handleOpenLoginModal} >
+      <ModalContextProvider>
+      <Body />
+        </ModalContextProvider>
+      </GlobalAuthProvider>
+  );
+}
+
+
+const Body = () => { 
+  const classes = useStyles();
+  let { openLoginModal, handleOpenLoginModal, handleCloseLoginModal, blogsHeadingRef}= useContext(ModalContext);
+
+  return (
+    <>
+    <Layout >
         <div className={`${classes.imageContainer} image-Container`}>
           <img loading='lazy' src="https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80" alt="Blog post" />
           <div className={
@@ -62,8 +62,8 @@ export default function Home() {
             </Typography>
             </div>
       </div>
-        <Blogs blogsHeadingRef={blogsHeadingRef} handleOpenLoginModal={handleOpenLoginModal} />
+          <Blogs blogsHeadingRef={blogsHeadingRef} handleOpenLoginModal={handleOpenLoginModal} />
       </Layout>
-      </GlobalAuthProvider>
-  );
+      </>
+  )
 }
