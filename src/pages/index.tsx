@@ -18,7 +18,8 @@ const useStyles = makeStyles((theme) => ({
   imageContainer: {
     width: "100%",
     height: "600px",
-    overflow: "hidden"
+    overflow: "hidden",
+    marginTop: '64px',
   },
   large: {
     width: theme.spacing(7),
@@ -33,15 +34,15 @@ export default function Home() {
     <GlobalAuthProvider>
       <ModalContextProvider>
       <Body />
-        </ModalContextProvider>
-      </GlobalAuthProvider>
+      </ModalContextProvider>
+    </GlobalAuthProvider>
   );
 }
 
 
 const Body = () => { 
   const classes = useStyles();
-  let { openLoginModal, handleOpenLoginModal, handleCloseLoginModal, blogsHeadingRef}= useContext(ModalContext);
+  let { handleOpenLoginModal, blogsHeadingRef}= useContext(ModalContext);
 
   return (
     <>

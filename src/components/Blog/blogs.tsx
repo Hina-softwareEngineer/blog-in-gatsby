@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { GlobalAuthProvider, AuthContext } from '../../context/auth/auth';
+import { ModalContextProvider} from '../../context/modal/modal';
 
 import './blogs.css';
 
@@ -47,7 +48,7 @@ const BlogData = ({ blog, options, ...props }) => {
   let { state } = useContext(AuthContext);
 
   return (
-    <>
+    <ModalContextProvider>
     <Header />
     <div className='main-container'>
         <Button style={{
@@ -72,6 +73,6 @@ const BlogData = ({ blog, options, ...props }) => {
         }
       </div>
     </div>
-    </>
+    </ModalContextProvider>
   );
 }

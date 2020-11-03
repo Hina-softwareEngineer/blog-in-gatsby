@@ -145,7 +145,7 @@ export default function Header() {
   return (
     <div>
       <ModalSignIn open={openLoginModal} handleClose={handleCloseLoginModal} />
-      <AppBar className="header" position="static">
+      <AppBar className="header" position="fixed">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             {
