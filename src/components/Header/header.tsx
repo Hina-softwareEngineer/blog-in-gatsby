@@ -90,8 +90,7 @@ export default function Header() {
   
   const classes = useStyles();
   const theme = useTheme();
-
-  const [resize, setResize] = useState(window.innerWidth);
+  const [resize, setResize] = useState(undefined);
   const [anchorEl, setAnchorEl] = useState(false);
   const [drawerState, setDrawerState] = useState(false);
   const { state, signOut } = useContext(AuthContext);
