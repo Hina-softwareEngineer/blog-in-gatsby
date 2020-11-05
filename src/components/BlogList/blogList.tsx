@@ -1,4 +1,4 @@
-import React,{useContext,useState} from 'react';
+import React,{useContext,useState,useEffect} from 'react';
 import { navigate, useStaticQuery, graphql } from "gatsby";
 import "./blogList.css"
 
@@ -13,6 +13,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
+import Skeleton from '@material-ui/lab/Skeleton';
 import { makeStyles } from '@material-ui/core/styles';
 
 
@@ -80,6 +81,12 @@ export default function Blogs({ handleOpenLoginModal,blogsHeadingRef }) {
     const classes = useStyles();
     const { state } = useContext(AuthContext);
     const [pageNumber, setPageNumber] = useState(1);
+    const [imageLoader, setImageLoader] = useState(true);
+
+
+    useEffect(() => { 
+        setTimeout(() => setImageLoader(false), 3000);
+    },[])
     
     
     const onPageChange = (event, page) => {
@@ -140,11 +147,15 @@ export default function Blogs({ handleOpenLoginModal,blogsHeadingRef }) {
                 currentBlogs.map((blog, index) =>
                    <React.Fragment key={index}> <Card className={classes.root}>
                         <CardActionArea className={classes.imageButton}>
-                            <CardMedia
-                                className={classes.media}
-                                image={blog.featuredImage.fluid.src}
-                                title={blog.title}
-                            />
+                            {
+                                imageLoader ?
+                                    <Skeleton animation="wave" variant="rect" width={300} height={200} /> :
+                                    <CardMedia
+                                    className={classes.media}
+                                    image={blog.featuredImage.fluid.src}
+                                    title={blog.title}
+                                    />
+                            }
                         </CardActionArea>
                         <CardContent className={classes.cardBody}>
                         <Typography className={classes.date} variant="body2" color="textSecondary" component="p">
