@@ -1,7 +1,9 @@
-import React, { createContext, useEffect, useReducer } from "react";
+import React, { createContext, useEffect, useReducer, useState } from "react";
 import firebase from "firebase";
 import firebaseConfig from "../../firebase/firebaseConfig";
 import { authReducer } from "./authReducer";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 
 export const AuthContext = createContext(null);
 
@@ -13,6 +15,8 @@ let initialState = {
 };
 
 export const GlobalAuthProvider = (props) => {
+  const [snackBar, setSnackBar] = useState(false);
+  const [messageSnackBar, setMessageSnackBar] = useState("Log Out Failed!");
   let [state, dispatch] = useReducer(authReducer, initialState);
 
   const signUpwithGoogle = (callBack) => {
@@ -61,6 +65,8 @@ export const GlobalAuthProvider = (props) => {
           type: "LOGIN_FAILED",
           payload: error,
         });
+        setMessageSnackBar("Login Failed!");
+        setSnackBar(true);
       });
   };
 
@@ -90,7 +96,10 @@ export const GlobalAuthProvider = (props) => {
           type: "SIGN_OUT",
         });
       })
-      .catch((e) => console.log("Logout failed", e));
+      .catch((e) => {
+        setMessageSnackBar("Logout Failed");
+        setSnackBar(true);
+      });
   };
 
   useEffect(() => {
@@ -102,6 +111,20 @@ export const GlobalAuthProvider = (props) => {
       value={{ state, signUpwithGoogle, signOut, onSignInWithFacebook }}
     >
       {props.children}
+      <Snackbar
+        open={snackBar}
+        autoHideDuration={3000}
+        onClose={() => setSnackBar(false)}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert onClose={() => setSnackBar(false)} severity="error">
+          {messageSnackBar}
+        </Alert>
+      </Snackbar>
     </AuthContext.Provider>
   );
 };
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}

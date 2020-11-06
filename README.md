@@ -3,13 +3,51 @@
     <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
   </a>
 </p>
+
+
+
 <h1 align="center">
-  Minimal starter for installing recipes
+  My Blog in GatsbyJs 🔥🔥
 </h1>
 
-Note that this starter does not include any pages by default.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/189d6398-8c29-48e6-9ff6-4f8c820f63fd/deploy-status)](https://app.netlify.com/sites/hina-blogs-2002/deploys)
 
-This starter is meant as a minimal reproduction of a Gatsby project in order to facilitate recipe installation.
+##### ⭐️ Live Demo : http://hina-blogs-2002.netlify.app/
+
+#### ⭐️ What tech I used:
+
+⚡️ [Gatsby Js Minimal Starter](https://github.com/gatsbyjs/gatsby-starter-minimal)
+⚡️ [Contentful (Headless CMS)](https://www.contentful.com/)
+⚡️ [Material UI](https://material-ui.com)
+⚡️ Firebase Authentication
+⚡️ React Context API for state management
+⚡️ Graphql
+⚡️ Hosted on Netlify
+
+<br />
+
+###### ⭐️ Tech:
+
+<div style="display: flex; align-items: center;">
+<img style="margin: 0 5px;" src='./assets/gatsby.png' width="30" height="30" alt='Gatsby' />
+<img style="margin: 0 5px;" src='./assets/contentful.png' width="30" height="30" alt='Contentful' />
+<img style="margin: 0 5px;" src='./assets/material-ui.png' width="30" height="30" alt='Material UI' />
+<img style="margin: 0 5px;" src='./assets/firebase.png' width="30" height="30" alt='Firebase' />
+<img style="margin: 0 5px;" src='./assets/graphql.png' width="30" height="30" alt='GraphQl' />
+<img style="margin: 0 5px;" src='./assets/netlify.svg' width="30" height="30" alt='Netlify' />
+</div>
+
+<br />
+
+##### ⭐️ Preview :
+
+![Main Page](./assets/blog.png)
+
+![Modal](./assets/blog1.png)
+
+![Blog Page](./assets/blog2.png)
+
+
 
 ## 🚀 Quick start
 
@@ -34,3 +72,6 @@ This starter is meant as a minimal reproduction of a Gatsby project in order to 
 3.  **Open the code and start customizing!**
 
     Your site is now running at `http://localhost:8000`!
+
+
+> Any Feedback is appreciated.😃😃
