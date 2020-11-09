@@ -16,13 +16,13 @@
 
 #### ⭐️ What tech I used:
 
-⚡️ [Gatsby Js Minimal Starter](https://github.com/gatsbyjs/gatsby-starter-minimal)
-⚡️ [Contentful (Headless CMS)](https://www.contentful.com/)
-⚡️ [Material UI](https://material-ui.com)
-⚡️ Firebase Authentication
-⚡️ React Context API for state management
-⚡️ Graphql
-⚡️ Hosted on Netlify
+⚡️ [Gatsby Js Minimal Starter](https://github.com/gatsbyjs/gatsby-starter-minimal)<br/>
+⚡️ [Contentful (Headless CMS)](https://www.contentful.com/)<br/>
+⚡️ [Material UI](https://material-ui.com)<br />
+⚡️ Firebase Authentication<br />
+⚡️ React Context API for state management<br />
+⚡️ Graphql<br />
+⚡️ Hosted on Netlify<br />
 
 <br />
 
@@ -41,11 +41,12 @@
 
 ##### ⭐️ Preview :
 
-![Main Page](./assets/blog.png)
+![Main Page](./assets/blog-main.png)
+
+<hr />
 
 ![Modal](./assets/blog1.png)
 
-![Blog Page](./assets/blog2.png)
 
 
 
